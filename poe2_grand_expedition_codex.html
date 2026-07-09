@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PoE2 Grand Expedition Codex — Rumor Checker</title>
+  <style>
+    :root{
+      --bg:#0b0f14;--panel:#121923;--panel2:#182230;--text:#e7edf5;--muted:#93a4b8;--line:#263346;
+      --good:#42d392;--warn:#ffd166;--bad:#ff6b6b;--blue:#7db7ff;--purple:#c59cff;--gold:#f6c65b;
+      --shadow:0 16px 45px rgba(0,0,0,.35);--radius:18px;
+    }
+    *{box-sizing:border-box} body{margin:0;background:radial-gradient(circle at 20% 0%,#182844 0,#0b0f14 35%,#080b10 100%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,sans-serif;line-height:1.55}
+    a{color:var(--blue)} .wrap{width:min(1180px,calc(100% - 32px));margin:auto}.hero{padding:48px 0 28px}.kicker{color:var(--gold);font-weight:800;letter-spacing:.08em;text-transform:uppercase;font-size:12px}.hero h1{font-size:clamp(30px,5vw,60px);line-height:1.02;margin:10px 0 12px}.lead{max-width:900px;color:#c8d5e5;font-size:18px}.grid{display:grid;gap:16px}.cards{grid-template-columns:repeat(4,minmax(0,1fr));margin:24px 0}.card{background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.015));border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}.card h3{margin:0 0 8px;font-size:16px}.card p{margin:0;color:var(--muted)}
+    .tabs{position:sticky;top:0;z-index:10;background:rgba(8,11,16,.8);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}.tabbar{display:flex;gap:8px;overflow:auto;padding:10px 0}.tabbtn{border:1px solid var(--line);background:#111925;color:var(--text);padding:10px 14px;border-radius:999px;cursor:pointer;white-space:nowrap}.tabbtn.active{background:var(--blue);color:#07101b;border-color:transparent;font-weight:800}.section{display:none;padding:28px 0 54px}.section.active{display:block}.section h2{font-size:30px;margin:0 0 12px}.section h3{margin:24px 0 10px}.muted{color:var(--muted)}.pill{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:#101720;border-radius:999px;padding:6px 10px;color:#c9d6e6;font-size:13px}.pill.good{border-color:rgba(66,211,146,.5);color:var(--good)}.pill.warn{border-color:rgba(255,209,102,.5);color:var(--warn)}.pill.bad{border-color:rgba(255,107,107,.5);color:var(--bad)}.pill.gold{border-color:rgba(246,198,91,.5);color:var(--gold)}
+    .two{grid-template-columns:1.1fr .9fr}.three{grid-template-columns:repeat(3,minmax(0,1fr))}.flow{counter-reset:step}.step{position:relative;padding-left:52px}.step:before{counter-increment:step;content:counter(step);position:absolute;left:0;top:14px;width:34px;height:34px;border-radius:50%;background:var(--panel2);display:grid;place-items:center;color:var(--gold);font-weight:900;border:1px solid var(--line)}
+    input,select,textarea{width:100%;background:#0d131b;border:1px solid var(--line);color:var(--text);border-radius:12px;padding:11px 12px;font:inherit} textarea{min-height:110px;resize:vertical}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.controls{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}.btn{border:0;background:var(--blue);color:#07101b;font-weight:900;padding:11px 14px;border-radius:12px;cursor:pointer}.btn.secondary{background:#202d3d;color:var(--text);border:1px solid var(--line)}.btn.danger{background:#3a1720;color:#ffd6df;border:1px solid rgba(255,107,107,.45)}
+    table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:14px;border:1px solid var(--line);background:#0d131b} th,td{text-align:left;padding:11px;border-bottom:1px solid var(--line);vertical-align:top} th{background:#162130;color:#dce8f8;font-size:13px} tr:last-child td{border-bottom:0}.rating{font-weight:900}.rS{color:var(--gold)}.rA{color:var(--good)}.rB{color:var(--blue)}.rC{color:var(--warn)}.rD{color:var(--bad)}
+    .result{border:1px solid var(--line);border-radius:18px;padding:18px;background:linear-gradient(180deg,#101925,#0c121a)}.score{font-size:42px;font-weight:950;line-height:1}.ok{color:var(--good)}.warnText{color:var(--warn)}.badText{color:var(--bad)}.chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.chip{border:1px solid var(--line);border-radius:999px;padding:7px 10px;cursor:pointer;background:#0d131b;color:#c9d6e6}.chip:hover{border-color:#536985}.chip.selected{background:#20334b;border-color:var(--blue)}
+    .checklist label{display:flex;gap:10px;align-items:flex-start;margin:10px 0;color:#d7e2f0}.checklist input{width:auto;margin-top:4px}.small{font-size:13px}.notice{border-left:4px solid var(--gold);padding:12px 14px;background:rgba(246,198,91,.08);border-radius:12px;color:#f5dfad}.dangerbox{border-left:4px solid var(--bad);padding:12px 14px;background:rgba(255,107,107,.08);border-radius:12px;color:#ffd5d5}.goodbox{border-left:4px solid var(--good);padding:12px 14px;background:rgba(66,211,146,.08);border-radius:12px;color:#c9f7df}.footer{padding:30px 0 50px;border-top:1px solid var(--line);color:var(--muted)}
+    @media(max-width:900px){.cards,.two,.three,.row{grid-template-columns:1fr}.hero{padding-top:32px}.tabbar{padding-inline:0}.card{padding:15px}}
+  </style>
+</head>
+<body>
+  <header class="hero wrap">
+    <div class="kicker">Path of Exile 2 • Grand Expedition • Runes of Aldur</div>
+    <h1>Grand Expedition Codex<br>Rumor Checker สำหรับเดินเรือ</h1>
+    <p class="lead">เว็บสรุปแนวคิดจาก Fubgun + Mattjestic สำหรับคนที่งง Expedition: เช็ค Rumor ก่อนใช้ Logbook/Saga, วางแผนเดินเรือ, จด Codex/Runic Knowledge, และตัดสินใจว่าแผนนี้ควร “Run / Save / Skip”</p>
+    <div class="cards grid">
+      <div class="card"><h3>1. ก่อนเดินเรือ</h3><p>เช็ค Rumor, Boss/Unique, ความคุ้ม Aldur’s Saga</p></div>
+      <div class="card"><h3>2. ตอนเข้า Expedition</h3><p>ไล่ Rune ดีช่วงต้น แล้วปิดท้ายที่ Remnant 7+ slot</p></div>
+      <div class="card"><h3>3. Codex</h3><p>ติดตาม Runic Knowledge 4 ชิ้น + สูตร/Recipe ที่ปลดแล้ว</p></div>
+      <div class="card"><h3>4. Logbook Journal</h3><p>บันทึกผลแต่ละรอบไว้ดูว่า Rumor ไหนคุ้มจริง</p></div>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <div class="wrap tabbar">
+      <button class="tabbtn active" data-tab="summary">สรุปให้เข้าใจ</button>
+      <button class="tabbtn" data-tab="checker">Rumor Checker</button>
+      <button class="tabbtn" data-tab="sailing">เดินเรือ / Logbook</button>
+      <button class="tabbtn" data-tab="runes">Rune & Bomb</button>
+      <button class="tabbtn" data-tab="codex">Codex Tracker</button>
+      <button class="tabbtn" data-tab="journal">Run Journal</button>
+      <button class="tabbtn" data-tab="sources">Sources</button>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section class="section active" id="summary">
+      <h2>แก่นของระบบนี้</h2>
+      <div class="grid two">
+        <div class="card">
+          <h3>Grand Expedition ไม่ใช่แค่เปิดแล้วระเบิดมั่ว</h3>
+          <p>มูลค่าหลักมาจากการเลือก Rumor/Logbook ให้ถูก, ใช้ Aldur’s Saga ในจังหวะที่คุ้ม, แล้ววางเส้นระเบิดให้ Buff/Rune ดี ๆ ส่งต่อไป Remnant ช่วงท้ายที่มี slot สูง</p>
+          <div class="chips">
+            <span class="pill gold">ใช้ Saga เมื่อ Rumor ดีพอ</span>
+            <span class="pill good">Opulent / Power สำคัญมาก</span>
+            <span class="pill warn">Boss/Unique อาจกิน Expedition</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>ภาพรวมการตัดสินใจ</h3>
+          <ol>
+            <li>ดู Rumor ที่แสดง และลองเช็คว่ามี Rumor ซ่อน/เพิ่มไหม</li>
+            <li>ถ้ามี 4+ Rumor ดี และไม่โดน Boss/Unique ขัดจังหวะ → ค่อยคิดใช้ Aldur’s Saga</li>
+            <li>ในแมปจริง ให้หา Rune ดีช่วงต้น โดยเฉพาะ Opulent</li>
+            <li>ช่วงท้ายต้องพยายามให้ระเบิดไปจบที่ 7+ slot Remnant หลายจุด</li>
+            <li>จดผลทุกครั้งใน Journal เพื่อไม่โดนความรู้สึกหลอก</li>
+          </ol>
+        </div>
+      </div>
+
+      <h3>ระดับความเสี่ยง</h3>
+      <div class="grid three">
+        <div class="card"><h3 class="ok">Low Budget</h3><p>Logbook & go, ไม่บังคับใช้ Aldur’s Saga, เน้นปลดทาง/หาโซน/หาของไปเรื่อย ๆ</p></div>
+        <div class="card"><h3 class="warnText">Mid Juice</h3><p>ใช้ Tablet/Waystone ดีขึ้น, เล่น Grand ที่ Rumor ดี, ยังเลี่ยง map ที่มอนแรงเกิน</p></div>
+        <div class="card"><h3 class="badText">Aldur Full Juice</h3><p>ผลตอบแทนเพดานสูง แต่ใช้ผิด = เผา Divine และบางแมปมอนโหดมาก</p></div>
+      </div>
+    </section>
+
+    <section class="section" id="checker">
+      <h2>Rumor Checker</h2>
+      <p class="muted">พิมพ์หรือกดเลือก Rumor ที่เห็นใน Logbook/Atlas แล้วระบบจะประเมินว่าเหมาะกับการเดินเรือหรือใช้ Aldur’s Saga แค่ไหน</p>
+
+      <div class="grid two">
+        <div class="card">
+          <h3>กรอก Rumor</h3>
+          <div class="row">
+            <input id="rumorInput" placeholder="เช่น Fallen Stars, Stardrinker, All that Glitters" />
+            <button class="btn" id="addRumor">เพิ่ม Rumor</button>
+          </div>
+          <div class="controls">
+            <button class="btn secondary" id="clearRumors">ล้างรายการ</button>
+            <button class="btn secondary" id="loadGood">ตัวอย่าง Rumor ดี</button>
+            <button class="btn secondary" id="loadBad">ตัวอย่างเสี่ยง</button>
+          </div>
+          <h3>กดเลือกจากฐานข้อมูล</h3>
+          <div id="rumorChips" class="chips"></div>
+        </div>
+        <div class="result" id="resultBox">
+          <div class="muted">คะแนนรวม</div>
+          <div class="score" id="scoreText">0.0</div>
+          <h3 id="verdict">ยังไม่ได้เลือก Rumor</h3>
+          <p id="reason" class="muted">เลือกอย่างน้อย 1 Rumor เพื่อประเมิน</p>
+          <div class="chips" id="selectedChips"></div>
+          <div class="notice small">หลักคิด: Fubgun แนะนำว่า Aldur’s Saga เหมาะสุดเมื่อมี 4 Rumor ที่ไม่ใช่ Boss/Unique/Event เพราะพวกนั้นกินจำนวน Expedition ได้ ยกเว้นกรณีตั้งใจฟาร์มเฉพาะอย่าง</div>
+        </div>
+      </div>
+
+      <h3>ตาราง Rumor Database</h3>
+      <input id="tableSearch" placeholder="ค้นหา Rumor / Map / Mod / Rating" />
+      <div style="overflow:auto;margin-top:12px">
+        <table id="rumorTable"></table>
+      </div>
+    </section>
+
+    <section class="section" id="sailing">
+      <h2>เดินเรือ / Logbook Flow</h2>
+      <div class="grid two">
+        <div class="card flow">
+          <div class="step"><h3>เริ่มจาก Kingsmarch</h3><p>หลังเข้า Atlas ให้เดินลงใต้ไปหา Ruins of Kingsmarch แล้วไล่เควสต์ Expedition/Grand Expedition เพื่อเปิดทางเดินเรือและระบบต่อเนื่อง</p></div>
+          <div class="step"><h3>ระหว่างทางอย่าข้าม Expedition Bomb Map</h3><p>Map ที่มีพื้นที่ Expedition ควรเข้าไปส่องก่อน ถ้าเห็น Remnant 7–8+ หรือรางวัลมีค่า ให้เล่นจริงจัง ถ้าไม่ดีให้เคลียร์ Cave/ทางสำคัญแล้วไปต่อ</p></div>
+          <div class="step"><h3>ก่อนใช้ Logbook/Saga</h3><p>เช็ค Rumor ด้วยแท็บ Rumor Checker: ถ้า 4+ Rumor ดีและไม่โดน Boss/Unique แย่ง slot → ค่อยพิจารณา Aldur’s Saga</p></div>
+          <div class="step"><h3>หลังจบแมป</h3><p>จดผลใน Journal: จำนวน Divine, Logbook, Saga, Unique Map, Recipe/Codex ที่ปลด เพื่อหาความจริงจากข้อมูลของตัวเอง</p></div>
+        </div>
+        <div class="card">
+          <h3>Setup ที่ควรจำ</h3>
+          <div class="checklist">
+            <label><input type="checkbox" data-key="setup1"> 3x Irradiated Tablets ถ้างบถึง</label>
+            <label><input type="checkbox" data-key="setup2"> Tablet มองหา “Map has 2 additional random map modifiers” + Monster Effect / Increased Rares</label>
+            <label><input type="checkbox" data-key="setup3"> Waystone: 8-mod ดีสุดสำหรับ loot, เล็ง Monster Effect สูง</label>
+            <label><input type="checkbox" data-key="setup4"> T15 Grand Expedition เพียงพอสำหรับ area level 81 เมื่อมี +1 area level</label>
+            <label><input type="checkbox" data-key="setup5"> ถ้าบิลด์ยังไม่แข็ง อย่า Full Juice ด้วย Aldur’s Saga</label>
+          </div>
+          <div class="dangerbox small">อย่ากด Saga เพราะ “อยากลอง” ถ้า Rumor ไม่ดีพอ เพราะต้นทุนสูงและ RNG ยังมีสิทธิ์ขาดทุน</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="runes">
+      <h2>Rune & Bomb Planner</h2>
+      <div class="grid two">
+        <div class="card">
+          <h3>Rune Tier จาก Fubgun</h3>
+          <table>
+            <tr><th>Tier</th><th>Rune</th><th>ความหมายตอนวางแผน</th></tr>
+            <tr><td class="rating rS">SS</td><td>Opulent</td><td>ตัวทำเงินหลัก ถ้าอยู่ต้นทางให้รีบ path ไปหา</td></tr>
+            <tr><td class="rating rA">S</td><td>Power, Death, Bond, Oath</td><td>Rune ดีมาก ควรส่งต่อไป Remnant ท้าย ๆ</td></tr>
+            <tr><td class="rating rA">A</td><td>Time, Rebirth</td><td>ดีพอให้เก็บ โดย Rebirth เป็น blue rune ที่เด่น</td></tr>
+            <tr><td class="rating rB">B</td><td>Purple อื่น ๆ</td><td>ใช้ได้ แต่ไม่ใช่ตัวตัดสินแผน</td></tr>
+            <tr><td class="rating rC">C</td><td>Blue อื่น ๆ</td><td>มูลค่าต่ำกว่า ถ้า slot ต่ำให้ reroll ได้</td></tr>
+          </table>
+        </div>
+        <div class="card">
+          <h3>ประเมิน Remnant</h3>
+          <div class="row">
+            <select id="slotCount">
+              <option value="4">4 slot</option><option value="5">5 slot</option><option value="6">6 slot</option><option value="7">7 slot</option><option value="8">8 slot</option><option value="9">9 slot</option>
+            </select>
+            <select id="runeType">
+              <option value="opulent">มี Opulent</option>
+              <option value="power">มี Power/S-tier</option>
+              <option value="purple">Purple ทั่วไป</option>
+              <option value="blue">Blue ทั่วไป</option>
+              <option value="none">ไม่มี Rune ดี</option>
+            </select>
+          </div>
+          <div class="controls"><button class="btn" id="evalRemnant">ประเมิน</button></div>
+          <div class="result" id="remnantResult"><p class="muted">เลือกจำนวน slot และ rune แล้วกดประเมิน</p></div>
+          <div class="goodbox small">หลักคิดสั้น ๆ: ต้นทางต้องหา Rune ดีให้มากที่สุด ส่วนปลายทางต้องเป็น 7+ slot หลายจุด เพื่อให้มอน/loot ได้บัฟสะสม</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="codex">
+      <h2>Codex Tracker</h2>
+      <p class="muted">ใช้จด Runic Knowledge / Recipe / Boss item ที่ปลดแล้ว ข้อมูลเก็บในเครื่องของนายท่านด้วย localStorage</p>
+      <div class="grid two">
+        <div class="card">
+          <h3>Runic Knowledge</h3>
+          <div class="checklist" id="knowledgeList"></div>
+          <div class="controls"><button class="btn secondary" id="resetCodex">รีเซ็ต Codex</button></div>
+        </div>
+        <div class="card">
+          <h3>Recipes / Valuable Unlocks</h3>
+          <div class="checklist" id="recipeList"></div>
+          <div class="row">
+            <input id="customRecipe" placeholder="เพิ่ม recipe/ของที่อยากติดตามเอง" />
+            <button class="btn" id="addRecipe">เพิ่ม</button>
+          </div>
+          <p class="muted small">หมายเหตุ: สูตรใหญ่บางอย่างต้องมี Runic Knowledge ครบ/เจอ remnant slot สูง และยังเป็น RNG หนัก</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="journal">
+      <h2>Run Journal</h2>
+      <div class="card">
+        <div class="row">
+          <input id="jName" placeholder="ชื่อ Logbook/Zone เช่น Moor / Secluded Temple" />
+          <input id="jRumors" placeholder="Rumors ที่เจอ เช่น Fallen Stars, Cold as ice" />
+        </div>
+        <div class="row" style="margin-top:10px">
+          <input id="jCost" type="number" step="0.1" placeholder="ต้นทุน Divine" />
+          <input id="jProfit" type="number" step="0.1" placeholder="กำไร/ของที่ได้ Divine โดยประมาณ" />
+        </div>
+        <textarea id="jNote" placeholder="Note: ใช้ Aldur? เจอ Opulent ต้นทางไหม? มอนโหดไหม? Codex/Recipe ปลดไหม?" style="margin-top:10px"></textarea>
+        <div class="controls">
+          <button class="btn" id="saveRun">บันทึก Run</button>
+          <button class="btn secondary" id="exportRuns">Export JSON</button>
+          <button class="btn danger" id="clearRuns">ล้าง Journal</button>
+        </div>
+      </div>
+      <div style="overflow:auto;margin-top:16px"><table id="journalTable"></table></div>
+    </section>
+
+    <section class="section" id="sources">
+      <h2>Sources / ขอบเขตข้อมูล</h2>
+      <div class="card">
+        <p>เว็บนี้เป็นตัวช่วยตัดสินใจ ไม่ใช่สูตรการันตีกำไร เพราะ Expedition ยังพึ่ง RNG สูง และตัวเลขราคา Divine เปลี่ยนตามตลาด</p>
+        <ul>
+          <li>YouTube: Fubgun — “The Best Farm in The Game, Grand Expedition Guide - Poe2”</li>
+          <li>Mobalytics: Fubgun Atlas Tree and Strats for 0.5</li>
+          <li>Google Sheets: Expedition Cheatsheet</li>
+          <li>Mobalytics: Mattjestic Expedition Endgame Farming Guide</li>
+          <li>Path of Exile official forum: 0.5.4 Hotfix note about Grand Expedition +1 Area Level passive fix</li>
+        </ul>
+        <div class="dangerbox small">ผมไม่ได้ฝังภาพ/คลิปของเจ้าของคอนเทนต์ลงในไฟล์นี้ เพื่อไม่ก็อปทรัพย์สินของเขาโดยตรง ใช้เป็นสรุป + เครื่องมือช่วยเล่นแทน</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer wrap">
+    <div>Grand Expedition Codex • offline single-file tool • data saved locally in this browser</div>
+  </footer>
+
+<script>
+const RUMORS = [
+  {rumor:'Fallen Stars', map:'Moor', mods:'Runestones', rating:'S+', category:'Expedition Map', note:'เป้าหมายดีมากจาก cheatsheet'},
+  {rumor:'Cold as ice', map:'Frigid Bluffs', mods:'Old Expedition', rating:'A+', category:'Expedition Map', note:'ดีมาก'},
+  {rumor:'Nothing to drink', map:'Stagnant Basin', mods:'Oil', rating:'A', category:'Expedition Map', note:'ดี'},
+  {rumor:'Endless Cliffs', map:'Craggy Peninsula', mods:'Rarity / Rogue Exiles', rating:'A', category:'Expedition Map', note:'ดี'},
+  {rumor:'Sulphite!', map:'Scorched Cay', mods:'Increased Rarity', rating:'A', category:'Expedition Map', note:'ดี'},
+  {rumor:'Unknown Ruins', map:'Exhumed Ruins', mods:'Precursor Leylines', rating:'B', category:'Expedition Map', note:'กลาง'},
+  {rumor:'Something Fishy', map:'Bleached Shoals', mods:'Gold', rating:'B', category:'Expedition Map', note:'กลาง'},
+  {rumor:"It's Warm", map:'Lush Island', mods:'Exp / Beyond / Hoards', rating:'B', category:'Expedition Map', note:'กลาง'},
+  {rumor:'Bleak and Awful', map:'Barren Atoll', mods:'Strongbox', rating:'B', category:'Expedition Map', note:'กลาง'},
+  {rumor:"It's Dry At Least", map:'Sloughed Gully', mods:'Monster Effectiveness', rating:'D', category:'Expedition Map', note:'ไม่ค่อยน่าเลือก'},
+  {rumor:'Wild, Roaming Free', map:'Grazed Prairie', mods:'Azmeri Spirits', rating:'D', category:'Expedition Map', note:'ไม่ค่อยน่าเลือก'},
+  {rumor:'Reflective Waters', map:'Lake of Kalandra', mods:'Ring Bases', rating:'A', category:'Unique Map', note:'Unique map; อาจกิน Expedition slot'},
+  {rumor:'All that Glitters', map:'Castaway', mods:'Gold', rating:'A', category:'Unique Map', note:'Unique map; อาจกิน Expedition slot'},
+  {rumor:'Almost paradise', map:'Untainted Paradise', mods:'Exp', rating:'C', category:'Unique Map', note:'Unique map; ไม่เหมาะถ้าเน้น Saga juice'},
+  {rumor:'A good fellow', map:'Moment of Zen', mods:'Seer', rating:'C', category:'Unique Map', note:'Unique map; ไม่เหมาะถ้าเน้น Saga juice'},
+  {rumor:'Fallen Skies', map:'Mirror of the Fallen Skies', mods:'Guaranteed Aldur\'s Saga ตาม Fubgun', rating:'S+', category:'Unique Map', note:'ข้อยกเว้นที่ดีมาก'},
+  {rumor:'Origin of the Fall', map:'Obscure Island', mods:'Olroth', rating:'A', category:'Boss', note:'Boss encounter; ใช้เมื่ออยากฟาร์ม boss'},
+  {rumor:'Stardrinker', map:'Secluded Temple', mods:'Uhtred', rating:'A', category:'Boss', note:'ใช้ได้ถ้าต้องการ Uhtred quest item'},
+  {rumor:'Last To Fall', map:'Mournful Cliffside', mods:'Vorana', rating:'B', category:'Boss', note:'Boss encounter'},
+  {rumor:'End of the Circle', map:'Sprawling Jungle', mods:'Medved', rating:'B', category:'Boss', note:'Boss encounter'},
+  {rumor:'Aldur\'s Saga', map:'Buffs Expeditions', mods:'Saga modifier', rating:'S+', category:'Saga', note:'S+ แต่เป็น gamble; ใช้ผิดคือขาดทุน'},
+  {rumor:'Olroth', map:'Obscure Island', mods:'Boss Node', rating:'A', category:'Saga', note:'Saga boss'},
+  {rumor:'Uhtred', map:'Secluded Temple', mods:'Boss Node', rating:'B+', category:'Saga', note:'Saga boss'},
+  {rumor:'Medved', map:'Strange Jungle', mods:'Boss Node', rating:'B+', category:'Saga', note:'Saga boss'},
+  {rumor:'Vorana', map:'Mournful Cliffside', mods:'Boss Node', rating:'B+', category:'Saga', note:'Saga boss'}
+];
+const scoreMap={'S+':5,'A+':4.5,'A':4,'B+':3.5,'B':3,'C':2,'D':1};
+let selected=[];
+const $=id=>document.getElementById(id);
+function norm(s){return (s||'').toLowerCase().replace(/[^a-z0-9ก-๙]+/g,' ').trim();}
+function findRumor(q){const n=norm(q); if(!n)return null; return RUMORS.find(r=>norm(r.rumor)===n)||RUMORS.find(r=>norm(r.rumor).includes(n)||norm(r.map).includes(n)||norm(r.mods).includes(n));}
+function ratingClass(r){return r.startsWith('S')?'rS':r.startsWith('A')?'rA':r.startsWith('B')?'rB':r==='C'?'rC':'rD'}
+function renderTable(){const q=norm($('tableSearch')?.value||''); const rows=RUMORS.filter(r=>!q||norm(Object.values(r).join(' ')).includes(q)); $('rumorTable').innerHTML='<tr><th>Rumor</th><th>Map Type</th><th>Mod/Reward</th><th>Rating</th><th>Category</th><th>Note</th></tr>'+rows.map(r=>`<tr><td><b>${r.rumor}</b></td><td>${r.map}</td><td>${r.mods}</td><td class="rating ${ratingClass(r.rating)}">${r.rating}</td><td>${r.category}</td><td>${r.note}</td></tr>`).join('');}
+function renderChips(){const box=$('rumorChips'); box.innerHTML=RUMORS.map(r=>`<button class="chip ${selected.includes(r.rumor)?'selected':''}" data-rumor="${r.rumor}">${r.rumor} <span class="rating ${ratingClass(r.rating)}">${r.rating}</span></button>`).join(''); box.querySelectorAll('.chip').forEach(b=>b.onclick=()=>toggleRumor(b.dataset.rumor));}
+function toggleRumor(name){selected=selected.includes(name)?selected.filter(x=>x!==name):[...selected,name]; updateChecker();}
+function addRumor(){const found=findRumor($('rumorInput').value); if(found&&!selected.includes(found.rumor)){selected.push(found.rumor)} $('rumorInput').value=''; updateChecker();}
+function updateChecker(){renderChips(); const data=selected.map(s=>RUMORS.find(r=>r.rumor===s)).filter(Boolean); $('selectedChips').innerHTML=data.map(r=>`<span class="pill ${r.category==='Boss'||r.category==='Unique Map'?'warn':'good'}">${r.rumor} ${r.rating}</span>`).join(''); if(!data.length){$('scoreText').textContent='0.0';$('verdict').textContent='ยังไม่ได้เลือก Rumor';$('reason').textContent='เลือกอย่างน้อย 1 Rumor เพื่อประเมิน';return;}
+  const avg=data.reduce((a,r)=>a+(scoreMap[r.rating]||0),0)/data.length; const boss=data.filter(r=>r.category==='Boss'); const unique=data.filter(r=>r.category==='Unique Map'); const bad=data.filter(r=>['C','D'].includes(r.rating)); const good=data.filter(r=>(scoreMap[r.rating]||0)>=4); const hasException=data.some(r=>['Fallen Skies','Stardrinker'].includes(r.rumor));
+  $('scoreText').textContent=avg.toFixed(1); let verdict='', reason='', cls='';
+  if(data.length>=4 && avg>=3.8 && boss.length===0 && unique.filter(r=>r.rumor!=='Fallen Skies').length===0 && bad.length===0){verdict='ควร Run / พิจารณา Aldur’s Saga'; reason='มี 4+ Rumor ดี และไม่มี Boss/Unique ที่กิน Expedition slot แบบเสียแผน'; cls='ok';}
+  else if(hasException && avg>=3.5){verdict='Run เฉพาะเป้าหมาย / ระวังเสียจำนวน Expedition'; reason='มีข้อยกเว้นที่ดี เช่น Fallen Skies หรือ Stardrinker แต่ยังต้องรู้ว่ากำลังฟาร์มอะไร'; cls='warnText';}
+  else if(data.length>=3 && avg>=3.3 && bad.length<=1){verdict='Run ได้ แต่ยังไม่ควรเผา Saga แพง'; reason='คุณภาพพอเล่น แต่ยังไม่เข้าเงื่อนไข 4 Rumor สวยสำหรับ Aldur’s Saga'; cls='warnText';}
+  else {verdict='Skip / Save Logbook / อย่าใช้ Saga'; reason='Rumor ต่ำหรือโดน Boss/Unique/C-D มากเกินไป ความเสี่ยงขาดทุนสูง'; cls='badText';}
+  $('verdict').className=cls; $('verdict').textContent=verdict; $('reason').textContent=reason + ` | Good:${good.length} Boss:${boss.length} Unique:${unique.length} Low:${bad.length}`;
+}
+function evalRemnant(){const slot=+$('slotCount').value, type=$('runeType').value; let msg='', cls='notice'; if(slot>=7&&type==='opulent'){msg='GG: ปลายทาง 7+ slot + Opulent คือจุดที่ควร path เข้า ถ้าอยู่ท้าย chain สามารถจบตรงนี้ได้'; cls='goodbox'} else if(slot>=7&&['power','purple'].includes(type)){msg='ดีมาก: ใช้เป็นปลาย chain หรือส่งต่อเข้า 7+ slot ถัดไป'; cls='goodbox'} else if(slot>=5&&type==='opulent'){msg='ต้นทางดี: รีบเก็บ Opulent เพื่อให้บัฟส่งต่อไปปลายทาง slot สูง'; cls='goodbox'} else if(slot<=5&&type==='none'){msg='ควร reroll/ข้าม ถ้าไม่ทำให้ path เสียหายน้อยมาก'; cls='dangerbox'} else if(slot>=7){msg='slot สูงมีค่า ถึง rune ไม่เทพก็อาจคุ้มถ้าอยู่ช่วงท้าย'; cls='notice'} else {msg='กลาง ๆ: ดู path รวม ถ้าไม่พาไป Rune ดีหรือ reward 3 Divine+ ก็ไม่ต้องฝืน'; cls='notice'} $('remnantResult').innerHTML=`<div class="${cls}">${msg}</div>`;}
+const baseRecipes=['Runic Knowledge 1/4','Runic Knowledge 2/4','Runic Knowledge 3/4','Runic Knowledge 4/4'];
+const baseUnlocks=['Raw Mirror Recipe / 9 Runes','Aldur\'s Legacy','Mana Rune / Runeseeker\'s Call quest item','Aldur\'s Saga drop/source','Mirror of the Fallen Skies','Custom valuable recipe'];
+function getLS(k,def){try{return JSON.parse(localStorage.getItem(k))??def}catch(e){return def}}
+function setLS(k,v){localStorage.setItem(k,JSON.stringify(v))}
+function renderCodex(){const state=getLS('ge_codex',{}); $('knowledgeList').innerHTML=baseRecipes.map(x=>`<label><input type="checkbox" data-codex="${x}" ${state[x]?'checked':''}> ${x}</label>`).join(''); const custom=getLS('ge_custom_recipes',[]); const recipes=[...baseUnlocks,...custom]; $('recipeList').innerHTML=recipes.map(x=>`<label><input type="checkbox" data-codex="${x}" ${state[x]?'checked':''}> ${x}</label>`).join(''); document.querySelectorAll('[data-codex]').forEach(cb=>cb.onchange=()=>{const s=getLS('ge_codex',{}); s[cb.dataset.codex]=cb.checked; setLS('ge_codex',s)});}
+function renderJournal(){const runs=getLS('ge_runs',[]); const total=runs.reduce((a,r)=>a+(+r.profit||0)-(+r.cost||0),0); $('journalTable').innerHTML='<tr><th>Date</th><th>Zone</th><th>Rumors</th><th>Cost</th><th>Loot/Profit</th><th>Net</th><th>Note</th></tr>'+runs.map(r=>`<tr><td>${r.date}</td><td>${r.name}</td><td>${r.rumors}</td><td>${r.cost}</td><td>${r.profit}</td><td class="rating ${(r.profit-r.cost)>=0?'rA':'rD'}">${(r.profit-r.cost).toFixed(1)}</td><td>${r.note}</td></tr>`).join('')+`<tr><td colspan="5"><b>Total Net</b></td><td colspan="2" class="rating ${total>=0?'rA':'rD'}">${total.toFixed(1)} Divine</td></tr>`;}
+function init(){document.querySelectorAll('.tabbtn').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tabbtn,.section').forEach(x=>x.classList.remove('active')); b.classList.add('active'); $(b.dataset.tab).classList.add('active')}); $('addRumor').onclick=addRumor; $('rumorInput').addEventListener('keydown',e=>{if(e.key==='Enter')addRumor()}); $('clearRumors').onclick=()=>{selected=[];updateChecker()}; $('loadGood').onclick=()=>{selected=['Fallen Stars','Cold as ice','Nothing to drink','Sulphite!'];updateChecker()}; $('loadBad').onclick=()=>{selected=['Almost paradise','A good fellow',"It's Dry At Least",'Last To Fall'];updateChecker()}; $('tableSearch').oninput=renderTable; $('evalRemnant').onclick=evalRemnant; document.querySelectorAll('[data-key]').forEach(cb=>{cb.checked=localStorage.getItem('ge_'+cb.dataset.key)==='1'; cb.onchange=()=>localStorage.setItem('ge_'+cb.dataset.key,cb.checked?'1':'0')}); $('addRecipe').onclick=()=>{const v=$('customRecipe').value.trim(); if(v){const arr=getLS('ge_custom_recipes',[]); if(!arr.includes(v))arr.push(v); setLS('ge_custom_recipes',arr); $('customRecipe').value=''; renderCodex();}}; $('resetCodex').onclick=()=>{localStorage.removeItem('ge_codex');localStorage.removeItem('ge_custom_recipes');renderCodex()}; $('saveRun').onclick=()=>{const runs=getLS('ge_runs',[]); runs.unshift({date:new Date().toLocaleString(),name:$('jName').value,rumors:$('jRumors').value,cost:+$('jCost').value||0,profit:+$('jProfit').value||0,note:$('jNote').value}); setLS('ge_runs',runs); ['jName','jRumors','jCost','jProfit','jNote'].forEach(id=>$(id).value=''); renderJournal()}; $('exportRuns').onclick=()=>{const data=JSON.stringify(getLS('ge_runs',[]),null,2); const blob=new Blob([data],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='grand-expedition-journal.json'; a.click(); URL.revokeObjectURL(a.href)}; $('clearRuns').onclick=()=>{if(confirm('ล้าง Journal ทั้งหมด?')){localStorage.removeItem('ge_runs');renderJournal()}}; renderTable(); renderChips(); renderCodex(); renderJournal(); updateChecker();}
+init();
+</script>
+</body>
+</html>
