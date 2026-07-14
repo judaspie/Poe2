@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#071018">
+<title>Grand Expedition Captain's Log REFORGED v3.1 — Build 2026-07-15</title>
+<style>
+:root{
+  --bg:#071018;--bg2:#0a1722;--panel:#0e1d2a;--panel2:#12283a;--panel3:#09131d;
+  --line:#254158;--line2:#3b607a;--ink:#eff7ff;--muted:#a8bfd1;--dim:#728da2;
+  --gold:#f4c96b;--gold2:#a67b31;--aqua:#5ed8df;--green:#61d69d;--amber:#f4b85c;
+  --red:#ff7a78;--purple:#c995ff;--blue:#74aefc;--paper:#173852;--shadow:0 20px 60px rgba(0,0,0,.35);
+  --r:18px;--r2:12px;
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:
+  radial-gradient(900px 580px at 75% -5%,rgba(55,123,168,.2),transparent 62%),
+  radial-gradient(850px 520px at -10% 42%,rgba(155,104,48,.16),transparent 62%),
+  linear-gradient(180deg,#071018,#071018 40%,#08131c);font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,sans-serif;line-height:1.5}
+button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:#85dff0}.wrap{width:min(1440px,calc(100% - 28px));margin:auto}
+.hero{padding:42px 0 28px;position:relative;overflow:hidden;border-bottom:1px solid rgba(244,201,107,.22)}
+.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.025),transparent);pointer-events:none}
+.kicker{font-size:12px;text-transform:uppercase;letter-spacing:.15em;font-weight:950;color:var(--gold)}
+h1{font-size:clamp(35px,6vw,74px);line-height:.96;margin:10px 0 14px;max-width:1120px;letter-spacing:-.035em}
+.lead{font-size:clamp(16px,2vw,20px);color:#c6d8e6;max-width:1050px;margin:0}.heroBadges{display:flex;gap:8px;flex-wrap:wrap;margin-top:17px}
+.badge,.pill{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:6px 10px;background:#0b1823;color:#cce0ed;font-size:12px}.good{color:var(--green)!important}.warn{color:var(--amber)!important}.bad{color:var(--red)!important}.gold{color:var(--gold)!important}.purple{color:var(--purple)!important}.blue{color:var(--blue)!important}
+.nav{position:sticky;top:0;z-index:90;background:rgba(6,15,22,.9);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}.navin{display:flex;gap:8px;overflow:auto;padding:10px 0;scrollbar-width:none}.navin::-webkit-scrollbar{display:none}.tab{white-space:nowrap;padding:9px 13px;border:1px solid var(--line);border-radius:999px;background:#0d1d29;color:#d7e6f2;font-weight:800}.tab.active{background:linear-gradient(180deg,#f5d486,#b98a35);color:#171005;border-color:transparent}
+main{min-height:70vh}.section{display:none;padding:28px 0 64px}.section.active{display:block}.section h2{font-size:clamp(28px,4vw,44px);margin:0 0 5px;letter-spacing:-.02em}.sub{color:var(--muted);margin:0 0 20px;max-width:1050px}
+.grid{display:grid;gap:15px}.g2{grid-template-columns:repeat(2,minmax(0,1fr))}.g3{grid-template-columns:repeat(3,minmax(0,1fr))}.g4{grid-template-columns:repeat(4,minmax(0,1fr))}.wide{grid-template-columns:1.3fr .7fr}.stickySide{position:sticky;top:76px;align-self:start}
+.card{border:1px solid var(--line);border-radius:var(--r);padding:17px;background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.012));box-shadow:var(--shadow)}.card h3{margin:0 0 8px}.card h4{margin:14px 0 7px}.card p{margin:5px 0;color:#c6d7e4}.muted{color:var(--muted)!important}.dim{color:var(--dim)}.small{font-size:13px}.tiny{font-size:11px}.num{font-size:clamp(28px,4vw,48px);line-height:1;font-weight:950}.label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.09em;font-weight:900;margin-bottom:5px}
+.notice,.goodbox,.warnbox,.badbox,.infobox{border-left:4px solid var(--gold);border-radius:12px;padding:11px 13px;margin:10px 0;background:rgba(244,201,107,.08)}.goodbox{border-color:var(--green);background:rgba(97,214,157,.08)}.warnbox{border-color:var(--amber);background:rgba(244,184,92,.08)}.badbox{border-color:var(--red);background:rgba(255,122,120,.08)}.infobox{border-color:var(--aqua);background:rgba(94,216,223,.07)}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.fields3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}.fields4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px}label.lbl{display:block;color:#bfd1df;font-size:12px;font-weight:850;margin:0 0 5px}input,select,textarea{width:100%;background:#07121b;color:var(--ink);border:1px solid var(--line);border-radius:11px;padding:10px 11px;outline:none}input:focus,select:focus,textarea:focus{border-color:#5b87a5;box-shadow:0 0 0 3px rgba(94,216,223,.08)}textarea{min-height:82px;resize:vertical}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.btn{border:0;border-radius:11px;padding:10px 13px;background:linear-gradient(180deg,#f5d486,#b98a35);color:#171005;font-weight:950}.btn.secondary{background:#173047;color:#eaf6ff;border:1px solid var(--line)}.btn.ghost{background:transparent;color:#cce0ec;border:1px solid var(--line)}.btn.danger{background:#431b22;color:#ffdce0;border:1px solid rgba(255,122,120,.45)}.btn.sm{padding:6px 9px;font-size:12px}.btn:disabled{opacity:.45;cursor:not-allowed}
+.checks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.check{display:flex;align-items:flex-start;gap:8px;padding:9px;border:1px solid var(--line);border-radius:11px;background:#0a1721}.check input{width:auto;margin-top:3px}.check strong{display:block;color:var(--ink)}.check span{font-size:13px;color:#c0d2df}
+.progress{height:10px;background:#122637;border-radius:999px;overflow:hidden}.progress span{display:block;height:100%;background:linear-gradient(90deg,var(--green),var(--gold),var(--red));transition:.2s}.separator{height:1px;background:var(--line);margin:16px 0}
+.chips{display:flex;flex-wrap:wrap;gap:7px}.chip{border:1px solid var(--line);background:#0a1721;color:#cbdde9;border-radius:999px;padding:7px 10px;font-size:12px}.chip.active{border-color:var(--gold);background:rgba(244,201,107,.1);color:var(--gold)}.chip.grand.active{border-color:var(--green);color:var(--green);background:rgba(97,214,157,.08)}.chip.boss.active{border-color:var(--red);color:var(--red)}.chip.unique.active{border-color:var(--purple);color:var(--purple)}
+.step{display:grid;grid-template-columns:36px 1fr;gap:11px;margin:11px 0}.stepNo{width:34px;height:34px;border:1px solid var(--gold2);border-radius:50%;display:grid;place-items:center;color:var(--gold);font-weight:950;background:#15150e}
+.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:14px;background:#08131c}table{width:100%;border-collapse:collapse;min-width:780px}th,td{padding:10px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}th{font-size:12px;color:#dceaf5;background:#10283a;position:sticky;top:0;z-index:2}tbody tr:hover{background:rgba(255,255,255,.025)}tr:last-child td{border-bottom:0}
+.source{border:1px solid var(--line);border-radius:13px;padding:12px;background:#0a1721}.source strong{display:block}.confidence{font-size:10px;text-transform:uppercase;letter-spacing:.09em;font-weight:950}.official{color:var(--green)}.database{color:var(--aqua)}.creator{color:var(--amber)}.community{color:var(--purple)}
+/* Rune visuals */
+.runeImg{position:relative;display:inline-grid;place-items:center;width:52px;height:52px;border-radius:13px;overflow:hidden;background:radial-gradient(circle,#33465d,#101923);border:1px solid #486078;flex:0 0 auto}.runeImg img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}.runeImg.sm{width:30px;height:30px;border-radius:8px}.runeImg.xs{width:22px;height:22px;border-radius:6px}.runeFallback{font-weight:950;color:var(--gold);text-shadow:0 2px 10px #000}.runeGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:11px}.runeCard{display:grid;grid-template-columns:56px 1fr;gap:11px;border:1px solid var(--line);border-radius:14px;padding:11px;background:#0a1721}.runeCard:hover{border-color:#4d708a}.runeName{font-weight:950}.runeEffect{font-size:12px;color:#b6c9d7;margin-top:3px}.bars{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}.mini{font-size:10px;padding:3px 7px;border:1px solid var(--line);border-radius:999px;background:#102232}.priorityS{color:var(--gold)}.priorityA{color:var(--green)}.priorityB{color:var(--aqua)}.priorityC{color:var(--muted)}
+.runePicker{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:7px;max-height:360px;overflow:auto;padding:4px}.runePick{min-height:88px;border:1px solid var(--line);border-radius:12px;background:#091722;color:#dceaf5;padding:7px;display:flex;flex-direction:column;align-items:center;gap:5px;font-size:10px;text-align:center}.runePick:hover{border-color:var(--gold2)}.runePick.kind-purple{box-shadow:inset 0 0 0 1px rgba(201,149,255,.12)}.runePick.kind-gold{box-shadow:inset 0 0 0 1px rgba(244,201,107,.2)}
+/* Blueprint */
+.blueprintShell{border:1px solid #376582;border-radius:18px;background:
+ linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px),
+ radial-gradient(circle at 30% 20%,rgba(75,181,221,.12),transparent 35%),#0b2435;background-size:24px 24px,24px 24px,auto;padding:15px;overflow:auto;box-shadow:inset 0 0 55px rgba(0,0,0,.28)}
+.blueprintRoute{display:flex;align-items:stretch;gap:36px;min-width:max-content;padding:10px}.bpNode{width:300px;position:relative;border:1px solid #5388a6;border-radius:16px;background:linear-gradient(180deg,rgba(31,78,105,.9),rgba(13,42,60,.95));padding:13px;box-shadow:0 14px 30px rgba(0,0,0,.28)}.bpNode:after{content:"";position:absolute;right:-37px;top:50%;width:36px;height:2px;background:linear-gradient(90deg,var(--gold),#50748a)}.bpNode:before{content:"➜";position:absolute;right:-31px;top:calc(50% - 14px);font-size:22px;color:var(--gold);z-index:2}.bpNode:last-child:after,.bpNode:last-child:before{display:none}.bpHead{display:flex;justify-content:space-between;gap:8px}.bpOrder{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:#0b1a23;border:1px solid var(--gold2);color:var(--gold);font-weight:950}.bpTitle{flex:1;font-weight:950}.bpTools{display:flex;gap:4px}.iconBtn{width:29px;height:29px;border-radius:8px;border:1px solid var(--line);background:#102b3d;color:#dceaf3}.sigil{width:200px;height:200px;position:relative;margin:10px auto}.sigilCore{position:absolute;left:50%;top:50%;width:86px;height:86px;transform:translate(-50%,-50%) rotate(45deg);border-radius:18px;background:radial-gradient(circle at 30% 25%,#57b3c9,#17485f 42%,#082335 75%);border:2px solid #7ed7e2;box-shadow:0 0 28px rgba(94,216,223,.23),inset 0 0 22px rgba(0,0,0,.4)}.sigilText{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;font-weight:950;text-shadow:0 2px 8px #000;z-index:3}.socket{position:absolute;width:43px;height:43px;transform:translate(-50%,-50%);border-radius:50%;border:2px solid #6e92a8;background:#0a1822;display:grid;place-items:center;box-shadow:0 3px 10px rgba(0,0,0,.4)}.socket img{width:100%;height:100%;object-fit:contain}.socket.carry{border-color:var(--gold);box-shadow:0 0 15px rgba(244,201,107,.75),inset 0 0 8px rgba(244,201,107,.25)}.socket.empty{border-style:dashed;color:#69869a;font-size:11px}.carryBanner{display:flex;align-items:center;gap:7px;padding:7px 9px;border-radius:10px;background:rgba(244,201,107,.09);border:1px solid rgba(244,201,107,.35);font-size:12px}.bpStats{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:9px}.bpStat{padding:7px;border-radius:10px;background:#0a1b27;border:1px solid rgba(93,132,155,.35);text-align:center}.bpStat b{display:block;font-size:16px}.bpAdvice{margin-top:8px;font-size:12px;color:#c5d9e6}.bpInherited{display:flex;gap:4px;flex-wrap:wrap;margin-top:7px}.draftSlots{display:flex;gap:6px;flex-wrap:wrap;min-height:52px;padding:8px;border:1px dashed var(--line);border-radius:12px;background:#08131c}.draftSlot{position:relative}.draftSlot button{position:absolute;right:-4px;top:-4px;width:18px;height:18px;border:0;border-radius:50%;background:#5b2026;color:white;font-size:11px;padding:0}.draftSlot.propagate .runeImg{border:2px solid var(--gold);box-shadow:0 0 13px rgba(244,201,107,.6)}
+.combo{border:1px solid var(--line);border-radius:12px;padding:10px;background:#0a1721}.combo strong{display:block}.empty{padding:25px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:13px}
+.toast{position:fixed;right:16px;bottom:16px;z-index:200;max-width:380px;background:#12283a;border:1px solid var(--line2);border-radius:12px;padding:12px 14px;box-shadow:var(--shadow);display:none}.toast.show{display:block}
+@media(max-width:1050px){.g4,.g3,.g2,.wide,.fields4,.fields3{grid-template-columns:1fr}.stickySide{position:static}.checks,.fields{grid-template-columns:1fr}.bpNode{width:280px}.hero{padding-top:30px}}
+@media(max-width:600px){.wrap{width:min(100% - 18px,1440px)}.card{padding:13px}.runeGrid{grid-template-columns:1fr}.runePicker{grid-template-columns:repeat(3,1fr)}.bpNode{width:258px}.sigil{transform:scale(.92);margin:-2px auto}.section{padding-top:20px}}
+@media print{.nav,.actions,.toast,.btn{display:none!important}.section{display:block!important;break-inside:avoid}.card{box-shadow:none}.blueprintShell{overflow:visible}.blueprintRoute{flex-wrap:wrap;min-width:0}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">PATH OF EXILE 2 · GRAND EXPEDITION · REFORGED BUILD 2026-07-15</div>
+    <h1>Grand Expedition Captain’s Log <span style="font-size:.42em;vertical-align:middle;color:#f4c96b;border:1px solid #8d6e2d;border-radius:999px;padding:5px 10px;white-space:nowrap">V3.1 REFORGED</span></h1>
+    <p class="lead">หนังสือเดินเรือสำหรับคัดข่าวลือ เตรียม Waystone และ Tablet วาง Remnant Chain แบบ Blueprint และประเมินว่าควรเสี่ยงกับ Rune ใด — ตั้งแต่ก่อนใช้ Logbook จนถึงระเบิดก้อนสุดท้าย</p>
+    <div class="heroBadges">
+      <span class="badge good">อัปเดต: 15 ก.ค. 2026</span><span class="badge gold">BUILD: GE-REFORGED-031</span><span class="badge good">ฐานเกม: 0.5.4</span><span class="badge gold">33 Rune Icons</span><span class="badge purple">Blueprint Planner 2.0</span><span class="badge">เก็บข้อมูลในเครื่อง</span><span class="badge warn">กลยุทธ์ผู้เล่น ≠ การรับประกันกำไร</span>
+    </div>
+  </div>
+</header>
+<div style="max-width:1500px;margin:12px auto 0;padding:0 18px"><div style="border:1px solid rgba(244,201,107,.55);background:linear-gradient(90deg,rgba(244,201,107,.14),rgba(37,99,130,.18));border-radius:14px;padding:11px 14px;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap"><strong style="color:#f4c96b">ไฟล์ใหม่ที่ถูกต้อง: GE-REFORGED-031</strong><span style="font-size:12px;color:#c5d9e6">เห็นแถบนี้ = ไม่ใช่ไฟล์/แคชรุ่นเดิม</span></div></div>
+
+<nav class="nav"><div class="wrap navin">
+  <button class="tab active" data-tab="helm">⚓ Helm</button>
+  <button class="tab" data-tab="rumors">🧭 Rumor Chart</button>
+  <button class="tab" data-tab="prep">🧰 Voyage Prep</button>
+  <button class="tab" data-tab="blueprint">💠 Blueprint 2.0</button>
+  <button class="tab" data-tab="runes">ᚱ Rune Codex</button>
+  <button class="tab" data-tab="recipes">🧩 Recipe Lab</button>
+  <button class="tab" data-tab="mods">🗺 Map Mods</button>
+  <button class="tab" data-tab="journal">📜 Profit Log</button>
+  <button class="tab" data-tab="sources">🔗 Sources</button>
+</div></nav>
+<main class="wrap">
+<section class="section active" id="helm">
+  <h2>ห้องกัปตัน</h2><p class="sub">ดูสถานะทั้งเส้นทางในหน้าเดียว ก่อนตัดสินใจใช้ Aldur’s Saga หรือจ่าย Juice ราคาแพง</p>
+  <div class="grid g4">
+    <div class="card"><div class="label">Rumor Map Count</div><div class="num" id="dashRumors">0</div><p class="muted small">จำนวนข่าวลือที่พาไป Grand Expedition</p></div>
+    <div class="card"><div class="label">Voyage Prep</div><div class="num" id="dashPrep">0</div><p class="muted small">Waystone, Tablet, Atlas และ Master</p></div>
+    <div class="card"><div class="label">Chain Quality</div><div class="num" id="dashChain">0</div><p class="muted small">คุณภาพการส่ง Rune และปลายสาย</p></div>
+    <div class="card"><div class="label">Captain Verdict</div><div class="num" id="dashVerdict" style="font-size:25px">ยังไม่พร้อม</div><p class="muted small" id="dashReason">กรอกข้อมูลใน Rumor, Prep และ Blueprint</p></div>
+  </div>
+  <div class="grid wide" style="margin-top:15px">
+    <div class="card">
+      <h3>ลำดับปฏิบัติจริง</h3>
+      <div class="step"><div class="stepNo">1</div><div><strong>สแกน Uncharted Waters หลายรอบ</strong><p class="small muted">จดข่าวลือที่เห็นทุกครั้ง แยก Grand Expedition ออกจาก Boss และ Unique Map ก่อนใช้ Saga</p></div></div>
+      <div class="step"><div class="stepNo">2</div><div><strong>เตรียมเรือและแผนที่</strong><p class="small muted">T15+ เพื่อเพดาน Remnant สูงสุด, Waystone mod สูง, Item Rarity/Effectiveness, Irradiated Tablets และ Master ที่ไม่ลดระเบิด</p></div></div>
+      <div class="step"><div class="stepNo">3</div><div><strong>วิ่งสำรวจทั้งแผนที่ก่อนวางระเบิด</strong><p class="small muted">จด Rune ที่ถูกไฮไลต์ให้ส่งต่อ, จำนวนช่อง, รางวัล, Remnant ช่องสูง, Strongbox/X/Cave และเส้นทางที่ระเบิดถึง</p></div></div>
+      <div class="step"><div class="stepNo">4</div><div><strong>วางตัวคูณต้นสาย — เก็บ Payload ไว้ท้ายสาย</strong><p class="small muted">Opulent, Power และ Rune สีม่วงที่บิลด์รับได้ควรเกิดก่อน Remnant 6–10 ช่อง เพื่อให้มอนปลายสายรับ modifier สะสม</p></div></div>
+      <div class="step"><div class="stepNo">5</div><div><strong>ระเบิดแล้วอ่านสนาม ไม่ใช่ยืนแลก</strong><p class="small muted">Corrupted Blood, Poison Volatile, Reflect, Proximity Shield, Union of Souls, Death/Oath และ Mana Siphoner สามารถทำลายรอบที่ดีได้</p></div></div>
+    </div>
+    <aside class="card stickySide">
+      <div class="label">กฎทอง</div><h3>รางวัลบนหินไม่ใช่ทั้งหมด</h3>
+      <div class="goodbox small">กำไรระดับสูงมักมาจากมอนปลายสายที่ได้รับ Runic Modifiers สะสม ไม่ใช่เฉพาะของรางวัลที่เขียนบน Remnant</div>
+      <div class="warnbox small">อย่าเอา Remnant ช่องสูงหรือรางวัลหลักไว้ต้นสาย เว้นแต่เส้นทาง/ความเสี่ยงบังคับ</div>
+      <div class="badbox small">Doryani’s Refined Formula ทำให้ Grand Expedition เหลือ 5 Explosives ตามแพตช์ 0.5.4 — ใช้ผิดงานแล้วแผนพังทั้งแผนที่</div>
+      <div class="actions"><button class="btn" data-goto="rumors">เริ่มเช็คข่าวลือ</button><button class="btn secondary" data-goto="blueprint">เปิด Blueprint</button></div>
+    </aside>
+  </div>
+</section>
+
+<section class="section" id="rumors">
+  <h2>Rumor Route Chart</h2><p class="sub">รวมข่าวลือที่เห็นจากทุกการรีเฟรช เพื่อประมาณจำนวน Grand Expedition จริงและตัด Boss/Unique Map ที่เบียดพื้นที่ออกจากแผน Saga</p>
+  <div class="grid wide">
+    <div class="card">
+      <div class="fields3">
+        <div><label class="lbl">ค้นชื่อ / แผนที่ / รางวัล</label><input id="rumorSearch" placeholder="Fallen Stars, Moor, Strongbox..."></div>
+        <div><label class="lbl">เป้าหมาย</label><select id="rumorGoal"><option value="saga">คัด Aldur’s Saga</option><option value="grand">หา Grand Expedition ทั่วไป</option><option value="boss">ล่า Boss / Quest</option><option value="special">หา Unique / Special Map</option></select></div>
+        <div><label class="lbl">ราคา Saga ที่รับได้ (Div)</label><input id="sagaPrice" type="number" min="0" step="0.1" value="35"></div>
+      </div>
+      <div class="notice small"><strong>วิธีเช็คข่าวลือซ่อน</strong> เปิด marker → จด 3 ข่าวลือ → ยก/วางไอเทมในกระเป๋าหรือสลับสถานะ Saga ตามเทคนิคชุมชน → เปิด marker ใหม่ → กดเลือกชื่อใหม่ทั้งหมดที่เห็น เว็บจะนับชื่อไม่ซ้ำให้</div>
+      <div id="rumorPicker" class="chips" style="margin-top:12px"></div>
+      <div class="actions"><button class="btn secondary" id="clearRumors">ล้างรายการ</button><button class="btn ghost" id="loadRumorSample">โหลดตัวอย่าง 4 Map Rumors</button></div>
+    </div>
+    <aside class="card stickySide">
+      <div class="label">Scanned Rumors</div><div class="num" id="rumorTotal">0</div>
+      <h3 id="rumorVerdict">ยังไม่ได้สแกน</h3><div class="progress"><span id="rumorBar" style="width:0%"></span></div>
+      <div id="rumorAdvice"></div>
+    </aside>
+  </div>
+  <div class="tablewrap" style="margin-top:15px"><table><thead><tr><th>Rumor</th><th>พื้นที่</th><th>ประเภท</th><th>จุดเด่น</th><th>ค่าต่อแผน Saga</th><th>คำแนะนำ</th></tr></thead><tbody id="rumorRows"></tbody></table></div>
+</section>
+
+<section class="section" id="prep">
+  <h2>Voyage Preparation</h2><p class="sub">ประเมิน Waystone, Tablets, Expedition Atlas, Master และความพร้อมของบิลด์ พร้อมคำแนะนำแบบงบต่ำ–กลาง–สุดทาง</p>
+  <div class="grid wide">
+    <div class="card">
+      <h3>Waystone & Tablet Setup</h3>
+      <div class="fields4">
+        <div><label class="lbl">Waystone Tier</label><input id="pTier" type="number" min="1" max="16" value="15"></div>
+        <div><label class="lbl">จำนวน Mod บน Waystone</label><input id="pMods" type="number" min="0" max="8" value="8"></div>
+        <div><label class="lbl">Item Rarity (%)</label><input id="pRarity" type="number" min="0" value="40"></div>
+        <div><label class="lbl">Modifier Effectiveness (%)</label><input id="pEffect" type="number" min="0" value="25"></div>
+        <div><label class="lbl">Quantity / Pack Juice (%)</label><input id="pQuantity" type="number" min="0" value="0"></div>
+        <div><label class="lbl">จำนวน Irradiated Tablets</label><input id="pTablets" type="number" min="0" max="3" value="3"></div>
+        <div><label class="lbl">Additional Modifiers ต่อ Tablet</label><input id="pTabletMods" type="number" min="0" max="3" value="2"></div>
+        <div><label class="lbl">Tablet Item Rarity รวม (%)</label><input id="pTabletRarity" type="number" min="0" value="0"></div>
+      </div>
+      <div class="fields3" style="margin-top:11px">
+        <div><label class="lbl">Cultivate the Sea</label><select id="pBiome"><option value="desert">Desert — Quantity focus</option><option value="forest">Forest</option><option value="grass">Grass</option><option value="mountain">Mountain</option><option value="swamp">Swamp</option><option value="water">Water</option><option value="none">ยังไม่เลือก</option></select></div>
+        <div><label class="lbl">Atlas Master</label><select id="pMaster"><option value="jado">Jado — Expedition setup</option><option value="doryani">Doryani — Refined Formula</option><option value="other">Master อื่น</option><option value="none">ยังไม่เลือก</option></select></div>
+        <div><label class="lbl">รูปแบบลงทุน</label><select id="pBudget"><option value="budget">Budget / Logbook & Go</option><option value="mid" selected>Mid Juice</option><option value="max">Max Juice / Saga</option></select></div>
+      </div>
+      <h4>Expedition Atlas Choices</h4><div id="atlasChecks" class="checks"></div>
+      <h4>Build Readiness</h4><div id="buildChecks" class="checks"></div>
+      <div class="actions"><button class="btn" id="evalPrep">วิเคราะห์การเตรียม</button><button class="btn secondary" id="savePrep">บันทึกค่าปัจจุบัน</button></div>
+    </div>
+    <aside class="card stickySide">
+      <div class="label">Preparation Score</div><div class="num" id="prepScore">0</div><h3 id="prepVerdict">ยังไม่ได้วิเคราะห์</h3><div class="progress"><span id="prepBar" style="width:0%"></span></div><div id="prepAdvice"></div>
+    </aside>
+  </div>
+  <div class="grid g3" style="margin-top:15px">
+    <div class="card"><h3>Budget Route</h3><p class="small">T15+ mod สูง ราคาถูก, เน้น Rarity/Effectiveness, ไม่ใช้ Saga, วิ่งเร็ว เก็บ Logbook/Tablet/Grand ที่เกิดเอง และบันทึกผลจริง</p></div>
+    <div class="card"><h3>Mid Juice</h3><p class="small">T15 8 mod, 3 Irradiated Tablets, +additional modifiers และ rarity ตามงบ, คัด Map Rumor 3–4 จุด, ใช้ Liquid Verisium กับ Remnant ที่แย่</p></div>
+    <div class="card"><h3>Max Juice</h3><p class="small">Aldur’s Saga เฉพาะ route ที่มี Grand Expedition มากพอ, Atlas/Runic Knowledge พร้อม, Waystone/Tablet เต็ม, บิลด์รับ Purple + Power chain ได้จริง</p></div>
+  </div>
+</section>
+
+<section class="section" id="blueprint">
+  <h2>Remnant Chain Blueprint 2.0</h2><p class="sub">บันทึก Remnant ที่พบจริง เลือก Rune ด้วยไอคอน ระบุ Rune กรอบทอง แล้วให้ระบบเรียงต้นสาย–ปลายสาย พร้อมจำลอง Modifier ที่มอนแต่ละก้อนจะได้รับ</p>
+  <div class="grid wide">
+    <div class="card">
+      <h3>เพิ่ม Remnant จากการสำรวจ</h3>
+      <div class="fields4">
+        <div><label class="lbl">ชื่อ/ตำแหน่ง</label><input id="bName" placeholder="เช่น ต้นเรือฝั่งตะวันตก"></div>
+        <div><label class="lbl">จำนวน Rune Slots</label><input id="bSlots" type="number" min="2" max="10" value="6"></div>
+        <div><label class="lbl">รางวัล</label><select id="bReward"><option value="generic">ทั่วไป</option><option value="currency">Currency</option><option value="divine">Divine / High Currency</option><option value="recipe">Runeshape Recipe</option><option value="unique">Unique / Exceptional</option><option value="saga">Aldur’s Saga / Legacy</option><option value="special">X / Cave / Strongbox</option></select></div>
+        <div><label class="lbl">มูลค่าที่ประเมิน (Div)</label><input id="bRewardValue" type="number" min="0" step="0.1" value="0"></div>
+      </div>
+      <div class="fields3" style="margin-top:11px">
+        <div><label class="lbl">ระยะอ้อมเส้นทาง</label><select id="bPathCost"><option value="0">อยู่ในเส้น</option><option value="1">อ้อมเล็กน้อย</option><option value="2">อ้อมมาก</option></select></div>
+        <div><label class="lbl">สถานะ Reroll</label><select id="bReroll"><option value="keep">เก็บผลนี้</option><option value="candidate">อาจใช้ Liquid Verisium</option><option value="rerolled">Reroll แล้ว</option></select></div>
+        <div><label class="lbl">หมายเหตุ</label><input id="bNote" placeholder="มีธงแดง / Strongbox / ทางตัน"></div>
+      </div>
+      <h4>Rune Slots ที่เลือก</h4><div id="draftSlots" class="draftSlots"></div>
+      <div class="fields" style="margin-top:10px"><div><label class="lbl">Rune ที่มีกรอบทองและจะส่งต่อ</label><select id="bPropagate"><option value="">— เลือกจาก Slot ที่เพิ่มแล้ว —</option></select></div><div><label class="lbl">กรอง Rune Picker</label><select id="bpRuneFilter"><option value="all">ทุก Rune</option><option value="value">Value / Loot</option><option value="purple">Purple / Rare</option><option value="danger">Danger 8+</option><option value="blue">Blue / Normal</option></select></div></div>
+      <div id="blueprintRunePicker" class="runePicker" style="margin-top:10px"></div>
+      <div class="actions"><button class="btn" id="addRemnant">เพิ่มลง Blueprint</button><button class="btn secondary" id="resetDraft">ล้างช่องที่เลือก</button><button class="btn ghost" id="sampleBlueprint">โหลดตัวอย่าง</button></div>
+    </div>
+    <aside class="card stickySide">
+      <div class="label">Route Quality</div><div class="num" id="chainScore">0</div><h3 id="chainVerdict">ยังไม่มี Remnant</h3><div class="progress"><span id="chainBar" style="width:0%"></span></div><div id="chainAdvice"></div>
+      <div class="actions"><button class="btn" id="autoRoute">เรียงเส้นทางอัตโนมัติ</button><button class="btn secondary" id="copyRoute">คัดลอกสรุป</button><button class="btn danger" id="clearBlueprint">ล้าง Blueprint</button></div>
+    </aside>
+  </div>
+  <h3 style="margin-top:20px">แผนผังระเบิด</h3>
+  <div class="blueprintShell"><div id="blueprintRoute" class="blueprintRoute"></div></div>
+  <div class="grid g3" style="margin-top:15px" id="comboWarnings"></div>
+</section>
+
+<section class="section" id="runes">
+  <h2>Rune Codex</h2><p class="sub">ชื่อและไอคอนอ้างอิงฐานข้อมูล PoE2DB พร้อมคำแปลเชิงการเล่น ลำดับการส่งต่อ จุดอันตราย และวิธีรับมือ</p>
+  <div class="grid g3" style="margin-bottom:13px">
+    <input id="runeSearch" placeholder="ค้นชื่อ, effect, Poison, Reflect...">
+    <select id="runeFilter"><option value="all">ทุก Rune</option><option value="gold">Gold / Opulent</option><option value="purple">Purple / Rare</option><option value="blue">Blue / Normal</option><option value="value">Priority S–A</option><option value="danger">Danger 8+</option></select>
+    <select id="runeSort"><option value="priority">เรียง Propagate Priority</option><option value="risk">เรียง Danger</option><option value="name">เรียงชื่อ</option></select>
+  </div>
+  <div class="infobox small"><strong>อ่านให้ถูก:</strong> Rune เป็นทั้ง Buff ต่อมอนและตัวเพิ่ม Reward ต่อมอน การส่ง Rune ที่ดีจึงเพิ่มของและเพิ่มโอกาสตายในเวลาเดียวกัน; Power ทำให้ Rune อื่นเป็น Empowered และแพตช์ 0.5.4 แก้ให้ Power ที่ส่งต่อจากก้อนก่อนทำงานถูกต้องแล้ว</div>
+  <div id="runeGrid" class="runeGrid"></div>
+</section>
+
+<section class="section" id="recipes">
+  <h2>Runeshape Recipe Lab</h2><p class="sub">เลือก Rune ที่เห็น ระบบจะเทียบกับสูตรสำคัญและบอกจำนวน Rune ที่ขาด — ใช้เพื่อช่วยอ่าน Remnant ไม่ใช่แทนหน้าสูตรในเกม</p>
+  <div class="grid wide">
+    <div class="card"><label class="lbl">Rune ที่มีอยู่</label><div id="recipePicker" class="chips"></div><div class="actions"><button class="btn secondary" id="clearRecipe">ล้าง</button><button class="btn ghost" id="mirrorRecipe">ตัวอย่าง Mirror</button></div></div>
+    <aside class="card stickySide"><div class="label">Exact Matches</div><div class="num" id="recipeCount">0</div><p class="muted" id="recipeInfo">ยังไม่ได้เลือก Rune</p></aside>
+  </div>
+  <div id="recipeGrid" class="grid g3" style="margin-top:15px"></div>
+</section>
+
+<section class="section" id="mods">
+  <h2>Grand Expedition Map & Atlas Mod Codex</h2><p class="sub">แยกสิ่งที่เป็นกลไกทางการ, modifier pool บน Grand Expedition/Logbook และ modifier ของ Expedition Tablet เพื่อไม่ให้ซื้อผิดหรือเข้าใจว่าทุกค่าเพิ่มสิ่งเดียวกัน</p>
+  <div class="grid g3" id="modGrid"></div>
+  <div class="card" style="margin-top:15px"><h3>ตัวประเมินมอดบน Grand Expedition ปัจจุบัน</h3><div id="grandModChecks" class="checks"></div><div class="actions"><button class="btn" id="evalGrandMods">ประเมินมอดชุดนี้</button></div><div id="grandModResult"></div></div>
+</section>
+
+<section class="section" id="journal">
+  <h2>Profit & Learning Log</h2><p class="sub">ตัวเลขตลาดเปลี่ยนตลอด จึงให้บันทึกผลจริงของตนเองแทนการเชื่อ Div/hour จากคลิปโดยไม่ตรวจสอบ</p>
+  <div class="grid wide">
+    <div class="card">
+      <div class="fields4">
+        <div><label class="lbl">ชื่อรอบ</label><input id="jName" placeholder="Saga Voyage #1"></div>
+        <div><label class="lbl">ประเภท</label><select id="jMode"><option>Budget Grand</option><option>Mid Juice</option><option>Aldur's Saga</option><option>Moor of the Fallen Skies</option><option>Boss Route</option></select></div>
+        <div><label class="lbl">เวลา (นาที)</label><input id="jMinutes" type="number" min="1" value="12"></div>
+        <div><label class="lbl">จำนวน Grand Expedition</label><input id="jGrand" type="number" min="0" value="1"></div>
+        <div><label class="lbl">Cost (Div)</label><input id="jCost" type="number" min="0" step="0.01" value="0"></div>
+        <div><label class="lbl">Loot Value (Div)</label><input id="jLoot" type="number" min="0" step="0.01" value="0"></div>
+        <div><label class="lbl">Raw Divine</label><input id="jRaw" type="number" min="0" value="0"></div>
+        <div><label class="lbl">Deaths</label><input id="jDeaths" type="number" min="0" value="0"></div>
+      </div>
+      <label class="lbl" style="margin-top:10px">Rumor / Early Carry / Final Slots / ข้อผิดพลาด</label><textarea id="jNote"></textarea>
+      <div class="actions"><button class="btn" id="saveRun">บันทึกรอบ</button><button class="btn secondary" id="exportData">Export JSON</button><label class="btn ghost">Import JSON<input type="file" id="importData" accept="application/json" hidden></label><button class="btn danger" id="clearRuns">ล้าง Journal</button></div>
+    </div>
+    <aside class="card stickySide"><div class="grid g2"><div><div class="label">Net</div><div class="num" id="jNet">0</div></div><div><div class="label">Div/hour</div><div class="num" id="jDph">0</div></div><div><div class="label">Runs</div><div class="num" id="jCount">0</div></div><div><div class="label">Win rate</div><div class="num" id="jWin">0%</div></div></div></aside>
+  </div>
+  <div class="tablewrap" style="margin-top:15px"><table><thead><tr><th>วันที่</th><th>รอบ</th><th>ชนิด</th><th>เวลา</th><th>GE</th><th>Cost</th><th>Loot</th><th>Net</th><th>Div/h</th><th>Raw Div</th><th>ตาย</th><th></th></tr></thead><tbody id="journalRows"></tbody></table></div>
+</section>
+
+<section class="section" id="sources">
+  <h2>แหล่งข้อมูลและระดับความเชื่อมั่น</h2><p class="sub">กลไกใช้แหล่งทางการและฐานข้อมูลก่อน ส่วนวิธีทำกำไร/เกณฑ์ซื้อของเป็นกลยุทธ์ผู้สร้างและข้อมูลชุมชนซึ่งอาจเปลี่ยนตามราคาและแพตช์</p>
+  <div class="grid g3">
+    <div class="source"><span class="confidence official">Official</span><strong>GGG Patch 0.5.4</strong><p class="small muted">Atlas tree, Liquid Verisium, Grand Expedition modifiers, random propagation highlight, Power propagation fix และ Doryani Refined Formula</p><a target="_blank" rel="noopener" href="https://www.pathofexile.com/forum/view-thread/3975218">เปิดแหล่งข้อมูล</a></div>
+    <div class="source"><span class="confidence official">Official</span><strong>GGG Patch 0.5.3</strong><p class="small muted">T15+ เพดาน Remnant สูงสุด, Grand chest rework, 15 explosives และ reward scaling ของ Runic Modifiers</p><a target="_blank" rel="noopener" href="https://www.pathofexile.com/forum/view-thread/3968601">เปิดแหล่งข้อมูล</a></div>
+    <div class="source"><span class="confidence database">Database</span><strong>PoE2DB Expedition</strong><p class="small muted">กลไก modifier propagation, Logbook mod pool, Tablet suffixes, Expedition Atlas choices และชื่อไอเทม</p><a target="_blank" rel="noopener" href="https://poe2db.tw/Expedition">เปิดแหล่งข้อมูล</a></div>
+    <div class="source"><span class="confidence database">Database</span><strong>PoE2DB Rune Keywords</strong><p class="small muted">ชื่อ Rune, effects, Power/Empowered, recipes และไฟล์ไอคอน</p><a target="_blank" rel="noopener" href="https://poe2db.tw/us/Keywords">เปิดแหล่งข้อมูล</a></div>
+    <div class="source"><span class="confidence creator">Creator Guide</span><strong>XTheFarmerX — Maximum Juice Expedition</strong><p class="small muted">Waystone/Tablet/Master setup, Remnant anatomy, routing และ full explanation</p><a target="_blank" rel="noopener" href="https://youtu.be/3hF0Om74UJ0">เปิดคลิป</a> · <a target="_blank" rel="noopener" href="https://docs.google.com/spreadsheets/d/14FFZPebLxeWIBGlbD-zKCxIy33lkOWpILO5JleVBnUw/edit">ไฟล์แนบ</a></div>
+    <div class="source"><span class="confidence creator">Creator Guide</span><strong>Fubgun — Grand Expedition</strong><p class="small muted">คัด Rumor, Saga และการวางตัวคูณก่อน Remnant ปลายสาย</p><a target="_blank" rel="noopener" href="https://youtu.be/7WqPIdTeYiY">เปิดคลิป</a></div>
+    <div class="source"><span class="confidence creator">Creator Guide</span><strong>Mattjestic — 0.5.4 Expedition</strong><p class="small muted">Quest/ocean workflow, Waystone crafting, Jado warning, scan 7–9 slots และ route demonstration</p><a target="_blank" rel="noopener" href="https://mobalytics.gg/poe-2/profile/mattjestic-multigaming/guides/poe-2-0-5-expedition-endgame-farming-guide-500-divine-daily-income">เปิด Written Guide</a></div>
+    <div class="source"><span class="confidence creator">Reference Guide</span><strong>Lolcohol — Grand Expeditions and Logbooks</strong><p class="small muted">Rumor table, map icons/rewards, scouting flow และ golden-border transfer explanation</p><a target="_blank" rel="noopener" href="https://mobalytics.gg/poe-2/guides/grand-expeditions-and-logbooks">เปิด Guide</a></div>
+    <div class="source"><span class="confidence community">Community Strategy</span><strong>Rumor & Chain Reports</strong><p class="small muted">เทคนิคข่าวลือซ่อน, Opulent/Purple routing, Reroll practice และข้อเตือน Oath/Rebirth — ใช้เป็นสมมติฐาน ไม่ใช่กฎทางการ</p><a target="_blank" rel="noopener" href="https://www.reddit.com/r/PathOfExile2/comments/1utf4iu/what_am_i_missing_with_expeditions/">เปิด discussion</a></div>
+  </div>
+  <div class="warnbox small" style="margin-top:15px"><strong>ขอบเขต:</strong> เว็บนี้ไม่รู้ราคาตลาดแบบสดและไม่อ้างว่ากลยุทธ์ใดรับประกันกำไร คะแนน Value/Risk เป็น heuristic เพื่อช่วยตัดสินใจ ต้องเทียบกับบิลด์ ราคาของ และผล Journal ของคุณเอง</div>
+  <div class="actions"><button class="btn secondary" onclick="window.print()">พิมพ์ / Save PDF</button><button class="btn danger" id="resetAll">ล้างข้อมูลเว็บทั้งหมด</button></div>
+</section>
+</main>
+<div class="toast" id="toast"></div>
+<script>
+'use strict';
+const $=id=>document.getElementById(id);
+const STORAGE='poe2_ge_captains_log_v3';
+const OLD_STORAGE='ge_nav_v2';
+const RUNE_CDN='https://cdn.poe2db.tw/image/Art/2DArt/UIImages/InGame/Expedition/Remnant/';
+const RUNES=[
+{id:'fire',name:'Fire Rune',file:'RemnantRuneFire',kind:'blue',effect:'Extra Fire Damage',th:'เพิ่มดาเมจไฟให้มอน',priority:'C',value:2,risk:4,counter:'Fire Resistance / อย่ายืนรับ Hit ซ้ำ',tags:['fire','elemental','damage']},
+{id:'cold',name:'Cold Rune',file:'RemnantRuneCold',kind:'blue',effect:'Extra Cold Damage',th:'เพิ่มดาเมจน้ำแข็งให้มอน',priority:'C',value:2,risk:4,counter:'Cold Resistance / Freeze protection',tags:['cold','elemental','damage']},
+{id:'lightning',name:'Lightning Rune',file:'RemnantRuneLightning',kind:'blue',effect:'Extra Lightning Damage',th:'เพิ่มดาเมจสายฟ้าให้มอน',priority:'C',value:2,risk:4,counter:'Lightning Resistance / Shock protection',tags:['lightning','elemental','damage']},
+{id:'tempest',name:'Tempest Rune',file:'RemnantRuneTempest',kind:'blue',effect:'Cannot be Shocked or Chilled; All Damage can Shock and Chill',th:'มอนไม่ติด Shock/Chill และ Hit ทุกชนิดของมันสร้าง Shock/Chill ได้',priority:'B',value:4,risk:7,counter:'Ailment immunity และไม่พึ่ง Shock/Chill เพื่อฆ่า',tags:['ailment','immunity','shock','chill']},
+{id:'momentum',name:'Momentum Rune',file:'RemnantRuneMomentum',kind:'blue',effect:'Increased Movement Speed; Movement Speed cannot be slowed below base',th:'มอนเร็วขึ้นและชะลอต่ำกว่าความเร็วพื้นฐานไม่ได้',priority:'C',value:3,risk:6,counter:'ระยะโจมตี/เคลื่อนที่สูง อย่าพึ่ง Slow',tags:['speed','movement']},
+{id:'bloodletting',name:'Bloodletting Rune',file:'RemnantRuneBloodletting',kind:'blue',effect:'Life Leech; Cannot have Life Leeched from; Inflicts Corrupted Blood on Hit',th:'มอนดูดเลือด ผู้เล่นดูดเลือดจากมันไม่ได้ และ Hit ใส่ Corrupted Blood',priority:'B',value:5,risk:9,counter:'Corrupted Blood immunity/cleanse; บิลด์ Leech ต้องระวัง',tags:['corrupted blood','leech','physical']},
+{id:'stone',name:'Stone Rune',file:'RemnantRuneStone',kind:'blue',effect:'Armoured; Increased Stun Threshold; Earthly Prison',th:'มอนเกราะสูง ทน Stun และสร้างคุกดิน',priority:'C',value:3,risk:6,counter:'Armour Break/ดาเมจไม่พึ่ง Physical และมีทางหนี',tags:['armour','stun','prison']},
+{id:'adaptive',name:'Adaptive Rune',file:'RemnantRuneAdaptive',kind:'blue',effect:'Adaptation',th:'มอนปรับตัวรับรูปแบบดาเมจ ทำให้สแปมดาเมจชนิดเดียวลำบากขึ้น',priority:'B',value:4,risk:7,counter:'ดาเมจสูงพอหรือมีหลายชนิดดาเมจ',tags:['adaptation','resistance','tank']},
+{id:'arcane',name:'Arcane Rune',file:'RemnantRuneArcane',kind:'blue',effect:'Extra Energy Shield; Stunning nova when Energy Shield is depleted',th:'มอนได้ Energy Shield และปล่อย Nova ทำให้ Stun เมื่อ ES แตก',priority:'C',value:3,risk:6,counter:'อย่ายืนประชิดตอน ES แตก / Stun recovery',tags:['energy shield','stun','nova']},
+{id:'toxic',name:'Toxic Rune',file:'RemnantRuneToxic',kind:'blue',effect:'Chance to Poison on Hit; Toxic Volatiles on death; All Damage from Hits can Poison',th:'Hit ทุกชนิดทำ Poison และมี Toxic Volatile หลังตาย',priority:'B',value:5,risk:9,counter:'Poison/Chaos mitigation และเคลื่อนออกจากลูกพิษ',tags:['poison','chaos','on death','volatile']},
+{id:'electrocuting',name:'Electrocuting Rune',file:'RemnantRuneElectrocuting',kind:'blue',effect:'Extra Lightning Damage; Lightning Damage Electrocutes; Shocked Ground Trails',th:'สายฟ้าเพิ่ม สะสม Electrocution และทิ้งพื้น Shock',priority:'B',value:5,risk:8,counter:'Shock/Electrocution protection และไม่ยืนบนพื้น',tags:['lightning','electrocution','shock','ground']},
+{id:'protective',name:'Protective Rune',file:'RemnantRuneProtective',kind:'blue',effect:'Periodically gains Verisium Proximity Shields',th:'มอนได้ Proximity Shield เป็นช่วง ๆ ต้องเข้าไปในโล่จึงทำดาเมจ',priority:'B',value:5,risk:8,counter:'บิลด์ไกลต้องพร้อมเข้าโล่หรือรอจังหวะ',tags:['proximity shield','ranged']},
+{id:'cyclonic',name:'Cyclonic Rune',file:'RemnantRuneCyclonic',kind:'blue',effect:'Chance to inflict Exposure, Armour Break and Wither on Hit',th:'Hit ใส่ Exposure, Armour Break และ Wither',priority:'B',value:5,risk:8,counter:'ลดเวลารับ Hit; ป้องกัน Chaos/Elemental/Physical ครบ',tags:['exposure','armour break','wither','debuff']},
+{id:'vision',name:'Vision Rune',file:'RemnantRuneVision',kind:'blue',effect:'Reflect Curses; Chance to Reflect Shock and Chill',th:'สะท้อน Curse และอาจสะท้อน Shock/Chill กลับผู้เล่น',priority:'B',value:5,risk:9,counter:'Curse immunity หรือปิด Curse/ailment setup',tags:['reflect','curse','shock','chill']},
+{id:'tidal',name:'Tidal Rune',file:'RemnantRuneTidal',kind:'blue',effect:'Remnant conjures Tidal Waves',th:'Remnant สร้างคลื่นโจมตีในพื้นที่',priority:'C',value:3,risk:5,counter:'เคลื่อนด้านข้างและอ่านจังหวะคลื่น',tags:['hazard','wave']},
+{id:'rebirth',name:'Rebirth Rune',file:'RemnantRuneRebirth',kind:'blue',effect:'Chance to Rebirth on death',th:'มอนมีโอกาสเกิดใหม่หลังตาย ทำให้ Encounter ยาวขึ้น',priority:'B',value:6,risk:8,counter:'DPS/พื้นที่สูง; ระวังคู่ Oath/Time',tags:['respawn','density','on death']},
+{id:'prismatic',name:'Prismatic Rune',file:'RemnantRunePrismatic',kind:'blue',effect:'All Damage can Shock, Chill and Ignite; Increased Elemental Resistances',th:'มอนต้านธาตุสูงและดาเมจทุกชนิดสร้างสถานะธาตุได้',priority:'B',value:5,risk:9,counter:'Ailment immunity; บิลด์ธาตุต้องมี Penetration',tags:['ailment','elemental','resistance']},
+{id:'volcanic',name:'Volcanic Rune',file:'RemnantRuneGasp',kind:'blue',effect:'Extra Fire Damage; All Damage can Ignite; Burning Ground Trails',th:'ไฟเพิ่ม ทุก Hit ทำ Ignite และทิ้ง Burning Ground',priority:'B',value:5,risk:8,counter:'Ignite protection / อย่าหยุดบนพื้นไฟ',tags:['fire','ignite','ground']},
+{id:'moon',name:'Moon Rune',file:'RemnantRuneMoon',kind:'blue',effect:'Remnant conjures Moon Beams',th:'Remnant ยิงลำแสงจันทร์ในพื้นที่',priority:'C',value:3,risk:5,counter:'เคลื่อนออกจากลำแสง',tags:['hazard','beam']},
+{id:'celestial',name:'Celestial Rune',file:'RemnantRuneCelestial',kind:'blue',effect:'Chance for Fire, Cold or Lightning Explosion on Death',th:'มอนมีโอกาสระเบิดธาตุหลังตาย',priority:'B',value:6,risk:9,counter:'อย่า Loot ทันที; เว้นระยะหลังฆ่าแพ็ก',tags:['on death','explosion','elemental']},
+{id:'opulent',name:'Opulent Rune',file:'RemnantRuneOpulent',kind:'gold',effect:'Increased Monster Rarity',th:'เพิ่ม Monster Rarity — ตัวคูณหลักที่ควรส่งต่อให้เร็ว',priority:'S',value:10,risk:4,counter:'มอนอาจหนาขึ้นจาก rarity/mods; ต้องมี DPS พอ',tags:['rarity','value','loot']},
+{id:'rage',name:'Rage Rune',file:'RemnantRuneEnrage',kind:'blue',effect:'Periodically Enrages',th:'มอน Enrage เป็นช่วง ๆ เพิ่มความรุนแรงและความเร็ว',priority:'B',value:4,risk:7,counter:'Burst kill หรือถอยเมื่อ Enrage',tags:['enrage','damage','speed']},
+{id:'wisdom',name:'Wisdom Rune',file:'RemnantRuneWisdom',kind:'blue',effect:'Increased Experience',th:'เพิ่ม Experience จากมอน เหมาะกับเป้าหมาย XP มากกว่ากำไร',priority:'C',value:3,risk:3,counter:'ไม่มี counter พิเศษ; อย่าแย่งช่องส่งต่อจาก Opulent',tags:['experience','xp']},
+{id:'sky',name:'Sky Rune',file:'RemnantRareRuneSky',kind:'purple',effect:'Remnant conjures Elemental Tornados',th:'เรียกพายุธาตุ เพิ่ม Hazard และ Runic Modifier',priority:'A',value:7,risk:7,counter:'เคลื่อนที่ต่อเนื่อง / Ailment protection',tags:['purple','hazard','tornado']},
+{id:'earth',name:'Earth Rune',file:'RemnantRareRuneEarth',kind:'purple',effect:'Remnant conjures Earthly Spires',th:'เรียกเสาดินในพื้นที่ เพิ่ม Hazard และ Runic Modifier',priority:'A',value:7,risk:7,counter:'อ่านพื้นที่และไม่ติดมุม',tags:['purple','hazard','spire']},
+{id:'life',name:'Life Rune',file:'RemnantRareRuneLife',kind:'purple',effect:'Shared Life',th:'มอนแชร์พลังชีวิต ทำให้แพ็กเหนียวและการ Focus เป้าหมายด้อยลง',priority:'A',value:8,risk:9,counter:'AoE DPS สูงและฆ่าทั้งแพ็กพร้อมกัน',tags:['purple','shared life','tank']},
+{id:'bond',name:'Bond Rune',file:'RemnantRareRuneBond',kind:'purple',effect:'More Rare Monsters with more Modifiers; Rare Monsters may transfer a Mod on death',th:'เพิ่ม Rare/จำนวน Mod และ Rare ที่ตายอาจส่ง Mod ต่อ — มูลค่าสูงมากแต่โหด',priority:'S',value:10,risk:10,counter:'Rare killer สูง, ไม่ยืนซ้อนแพ็ก, รับหลาย mod ได้',tags:['purple','rare','modifiers','value']},
+{id:'ward',name:'Ward Rune',file:'RemnantRareRuneWard',kind:'purple',effect:'Protected by Runic Ward',th:'มอนได้ Runic Ward เพิ่มชั้นป้องกันก่อนตาย',priority:'A',value:8,risk:9,counter:'DPS ต่อเนื่องสูงและไม่พึ่ง one-shot',tags:['purple','runic ward','tank']},
+{id:'soul',name:'Soul Rune',file:'RemnantRareRuneSoul',kind:'purple',effect:'Union of Souls',th:'ตัวที่เหลือแข็งแรงขึ้นจากมอนที่ตายก่อนหน้า',priority:'S',value:9,risk:10,counter:'ฆ่าพร้อมกัน / อย่าปล่อย Rare ตัวท้ายสะสมพลัง',tags:['purple','union of souls','scaling']},
+{id:'death',name:'Death Rune',file:'RemnantRareRuneDeath',kind:'purple',effect:'Slain Monsters may merge into stronger Monsters',th:'มอนที่ตายรวมร่างเป็นตัวแข็งแกร่งกว่า เพิ่มความหนาแน่นและท้ายไฟต์',priority:'S',value:9,risk:10,counter:'Burst/AoE สูงและมีพื้นที่ถอย',tags:['purple','merge','on death','density']},
+{id:'oath',name:'Oath Rune',file:'RemnantRareRuneOath',kind:'purple',effect:'A Monster summons Allies',th:'มอนเรียกพวกเพิ่ม ทำให้ไฟต์ยาวและรกมาก',priority:'A',value:8,risk:10,counter:'AoE/Performance ดี; ชุมชนจำนวนมากหลีกเลี่ยงการส่งต่อ',tags:['purple','summon','density']},
+{id:'time',name:'Time Rune',file:'RemnantRareRuneTime',kind:'purple',effect:'Slain Monsters may respawn as a higher Rarity',th:'มอนที่ตายอาจเกิดใหม่ด้วย Rarity สูงกว่า — ตัวคูณมูลค่ากับความเสี่ยง',priority:'S',value:10,risk:10,counter:'DPS สูงและยอมรับ Encounter ยาว',tags:['purple','respawn','rarity','value']},
+{id:'power',name:'Power Rune',file:'RemnantRareRunePower',kind:'purple',effect:'Other Runes gain Empowered',th:'ทำให้ Runic Modifiers อื่นเป็น Empowered เป็นตัวคูณทั้ง Reward และ Danger',priority:'S',value:10,risk:10,counter:'ใช้เฉพาะเมื่อบิลด์รับ modifier ที่ Empowered ได้',tags:['purple','power','empowered','value']}
+];
+const RUNE=Object.fromEntries(RUNES.map(r=>[r.id,r]));
+const PRIORITY={S:4,A:3,B:2,C:1};
+const RECIPES=[
+{name:'Mirror of Kalandra',lvl:'Lv70+',r:['power','opulent','time','oath','death','soul','bond','earth','stone']},
+{name:"Hinekora's Lock",lvl:'Lv70+',r:['opulent','power','ward','rebirth','bond','life','time','death','bond']},
+{name:'Divine Orb ×10',lvl:'Lv70+',r:['death','soul','power','life','vision','celestial','toxic','prismatic','tidal']},
+{name:'Perfect Chaos Orb ×3',lvl:'Lv70+',r:['adaptive','sky','oath','rage','earth','power','tempest','life','volcanic']},
+{name:'Perfect Exalted Orb ×3',lvl:'Lv70+',r:['adaptive','life','soul','stone','bond','oath','power','death','toxic']},
+{name:'Orb of Annulment ×3',lvl:'Lv70+',r:['cyclonic','arcane','vision','rebirth','cyclonic','lightning','prismatic','electrocuting','power']},
+{name:'Very Rare Unique Item',lvl:'Lv70+',r:['celestial','wisdom','moon','power','earth','protective','prismatic','rebirth','fire']},
+{name:'Perfect Flux',lvl:'Lv70+',r:['wisdom','opulent','oath','life','power','time','celestial','lightning']},
+{name:'Perfect Regal Orb ×3',lvl:'Lv70+',r:['tempest','toxic','soul','moon','adaptive','rebirth','opulent','power']},
+{name:"Aldur's Saga",lvl:'Lv70+',r:['wisdom','vision','life','ward','power','arcane','time']},
+{name:"Olroth's Saga",lvl:'Lv70+',r:['tempest','vision','time','celestial','wisdom','power']},
+{name:'Divine Orb ×3',lvl:'Lv70+',r:['death','soul','power','life','vision','celestial']},
+{name:'Divine Orb ×2',lvl:'Lv70+',r:['death','soul','power','life','vision']},
+{name:'Divine Orb',lvl:'Lv65–74',r:['death','soul','power','life']},
+{name:'The Runefather’s Alloy',lvl:'Lv70+',r:['ward','rebirth','time','cold','power','prismatic','moon','wisdom']},
+{name:'The Runebinder’s Alloy',lvl:'Lv70+',r:['ward','rebirth','soul','cyclonic','power','lightning','bloodletting','wisdom']},
+{name:'Transcendent Alloy',lvl:'Lv70+',r:['sky','rebirth','momentum','rage','power','electrocuting','death']},
+{name:'Celestial Alloy',lvl:'Lv70+',r:['earth','rebirth','celestial','adaptive','power','soul','cyclonic']}
+];
+const RUMORS=[
+{name:'Fallen Stars',area:'Moor of the Fallen Skies',kind:'grand',feature:'Runestones; special Remnant และเป้าหมาย Saga/Flux',grade:'S',advice:'เป้าหมายพิเศษ มีคุณค่าแม้ไม่ได้เน้น Saga count'},
+{name:'Cold as Ice',area:'Frigid Bluffs',kind:'grand',feature:'Grand แบบ original Logbook encounters',grade:'S',advice:'Great Rumor สำหรับแผน Saga ตามหลาย guide'},
+{name:'Endless Cliffs',area:'Craggy Peninsula',kind:'grand',feature:'Increased Rarity + Rogue Exiles',grade:'S',advice:'มูลค่าสูงแต่เพิ่มความยาก'},
+{name:'Sulphite!',area:'Scorched Cay',kind:'grand',feature:'Increased Rarity',grade:'S',advice:'Great Rumor สำหรับสาย loot'},
+{name:'Unknown Ruins',area:'Exhumed Ruins',kind:'grand',feature:'จุด Leyline 3 จุดให้ free Logbook reveal',grade:'A',advice:'ดีทั้ง route และการ sustain'},
+{name:'Nothing to Drink',area:'Stagnant Basin',kind:'grand',feature:'Grand Expedition map rumor',grade:'A',advice:'นับเพิ่มจำนวน Grand Expedition'},
+{name:'Something Fishy',area:'Bleached Shoals',kind:'grand',feature:'Clam Chests → Pearlescent Amulets',grade:'A',advice:'Grand พร้อมของเฉพาะพื้นที่'},
+{name:'Warm but Risky',area:'Grazed Prairie',kind:'grand',feature:'Experience, Beyond, Hoards',grade:'A',advice:'ดีเมื่อบิลด์รับ Beyond/ความหนาแน่นได้'},
+{name:"It's Dry at Least",area:'Sloughed Gully',kind:'grand',feature:'Monster Effectiveness',grade:'B',advice:'นับ Grand แต่เพิ่มความเสี่ยง'},
+{name:'Wild, Roaming Free',area:'Lush Island / roaming area',kind:'grand',feature:'Azmeri-style roaming rewards',grade:'B',advice:'นับ Grand; คุณค่าขึ้นกับเป้าหมาย'},
+{name:'Bleak and Awful',area:'Barren Atoll',kind:'grand',feature:'Additional Strongboxes',grade:'A',advice:'ดีเมื่อ Strongbox juice พร้อม'},
+{name:'All that Glitters',area:'Castaway',kind:'unique',feature:'Unique Map เน้น Gold',grade:'B',advice:'ไม่ใช่ Grand count สำหรับ Saga unless ต้องการ Gold'},
+{name:'Reflective Waters',area:'Lake of Kalandra',kind:'unique',feature:'Special Ring base',grade:'A',advice:'เลือกเมื่อไล่ Ring ไม่ใช่เพิ่ม GE count'},
+{name:'Almost Paradise',area:'Untainted Paradise',kind:'unique',feature:'Experience สูง แต่ไม่มี Loot',grade:'B',advice:'ใช้เพื่อ XP'},
+{name:'A Good Fellow',area:'Moment of Zen',kind:'unique',feature:'Nameless Seer → random Unique',grade:'B',advice:'Unique target'},
+{name:'Crazed Chieftain',area:'Jade Isles',kind:'unique',feature:'โอกาส Rakiata’s Flow Lineage Support',grade:'A',advice:'เฉพาะสายล่า Lineage'},
+{name:'Stardrinker…',area:'Secluded Temple',kind:'boss',feature:'Uhtred, the Stardrinker',grade:'A',advice:'Boss/Quest route'},
+{name:'Last to Fall',area:'Mournful Cliffside',kind:'boss',feature:'Vorana, Last to Fall',grade:'B',advice:'Boss/Quest route'},
+{name:'Origin of the Fall',area:'Obscure Island',kind:'boss',feature:'Olroth',grade:'A',advice:'Boss/Quest route'},
+{name:'End of the Circle',area:'Sprawling Jungle',kind:'boss',feature:'Medved',grade:'B',advice:'Boss/Quest route'}
+];
+const ATLAS_CHOICES=[
+{id:'questContinues',name:'The Quest Continues',desc:'Grand Expeditions may have up to 3 modifiers และ +1 Area Level',score:12},
+{id:'calculatedQuantity',name:'Calculated Investment — Quantity',desc:'1% increased Item Quantity per Runic Modifier',score:13},
+{id:'doubleExtra',name:'Double or Nothing — 25% Extra Modifier',desc:'มีโอกาสเพิ่ม Runic Modifier อีกหนึ่งแทนการปิดการส่งต่อ',score:12},
+{id:'steadyRemnant',name:'Steady Development — Extra Remnant',desc:'เลือก Remnant แทน Explosive สำหรับเส้นทางเน้น payload',score:8},
+{id:'strategicFast',name:'Strategic Advantage — 50% Kill Gate',desc:'ระเบิดต่อเมื่อฆ่า 50% ช่วยลดเวลารอบ แต่เสี่ยงมอนทับกัน',score:8},
+{id:'feelingLucky',name:'Feeling Lucky?',desc:'ปลด Liquid Verisium จาก Farrow',score:7},
+{id:'gainingTraction',name:'Gaining Traction',desc:'50% increased Monster Rarity ต่อ Remnant ที่ทำเสร็จในพื้นที่',score:14}
+];
+const BUILD_CHECKS=[
+{id:'mana',name:'Mana Siphoner',desc:'ฆ่าจากนอกวงหรือเข้าไปฆ่าในวงได้'},
+{id:'ailment',name:'Shock / Chill / Freeze / Ignite',desc:'มี immunity/mitigation ที่ไว้ใจได้'},
+{id:'cb',name:'Corrupted Blood',desc:'มี immunity หรือ cleanse'},
+{id:'poison',name:'Poison / Chaos / Volatiles',desc:'รับ Poison และ on-death hazard ได้'},
+{id:'reflect',name:'Curse & Ailment Reflect',desc:'ปิด curse หรือรับ reflect ได้'},
+{id:'shield',name:'Proximity Shield',desc:'เข้าโล่ได้โดยไม่ตาย'},
+{id:'rare',name:'Extreme Rare Packs',desc:'ฆ่า Ward/Shared Life/Union/Bond ได้เร็ว'},
+{id:'performance',name:'Density & Performance',desc:'เครื่องและบิลด์รับมอนจำนวนมากได้'}
+];
+const MODS=[
+{group:'Official 0.5.4',name:'Increased number of Runic Monster Markers',effect:'เพิ่มจุดธง Runic Monsters',decision:'ดีมากต่อจำนวนมอน/ของ แต่เพิ่ม density',score:8,risk:5},
+{group:'Official 0.5.4',name:'Runic Monsters are Duplicated',effect:'Runic Monsters ถูกทำซ้ำ',decision:'ตัวคูณ density ใหญ่ ต้องดูบิลด์',score:10,risk:9},
+{group:'Official 0.5.4',name:'Area contains additional Remnants',effect:'เพิ่มจำนวน Remnant ใน Grand Expedition',decision:'หนึ่งในมอดที่ต้องการที่สุดสำหรับ chain',score:10,risk:6},
+{group:'Aldur / Logbook Pool',name:'All Remnants have at least 5 Rune Slots',effect:'กำหนด minimum 5 slots',decision:'ดีแต่ยังไม่ใช่ jackpot; reroll ยังรักษา floor ตามรายงานผู้เล่น',score:7,risk:6},
+{group:'Aldur / Logbook Pool',name:'All Remnants have at least 6 Rune Slots',effect:'กำหนด minimum 6 slots',decision:'แรงมากต่อจำนวน waves/modifiers',score:13,risk:8},
+{group:'Aldur / Logbook Pool',name:'All Remnants have at least 7 Rune Slots',effect:'กำหนด minimum 7 slots',decision:'Jackpot map; ต้องพร้อมรับความยากมหาศาล',score:18,risk:10},
+{group:'Aldur / Logbook Pool',name:'+1 Remnant with at least 7 Rune Slots',effect:'เพิ่มก้อน 7+ หนึ่งก้อน',decision:'เก็บก้อนนี้ไว้ท้ายสาย'},
+{group:'Aldur / Logbook Pool',name:'+1 Remnant with at least 8 Rune Slots',effect:'เพิ่มก้อน 8+ หนึ่งก้อน',decision:'Payload ระดับสูง; reroll เฉพาะรู้ว่าก้อนใด'},
+{group:'Aldur / Logbook Pool',name:'+1 Remnant with at least 9 Rune Slots',effect:'เพิ่มก้อน 9+ หนึ่งก้อน',decision:'Jackpot payload — ห้ามเผาทิ้งต้นสาย'},
+{group:'Aldur / Logbook Pool',name:'A Remnant will contain a Power Rune',effect:'รับประกันโอกาส Power Rune หนึ่งก้อน',decision:'หาเส้นทางให้ Power ส่งต่อก่อนก้อน slot สูง'},
+{group:'Aldur / Logbook Pool',name:'Remnants rolled again, keeping rarest outcome',effect:'Lucky-style remnant roll',decision:'เพิ่มคุณภาพโดยรวมแต่ไม่รับประกันสูตรเฉพาะ'},
+{group:'Aldur / Logbook Pool',name:'Area contains +1–3 Remnants',effect:'เพิ่ม Remnant โดยตรง',decision:'มูลค่าดีและเพิ่มตัวเลือก path'},
+{group:'Expedition Tablet',name:'of Verisium',effect:'15–30% increased Quantity of Expedition Artifacts dropped by Monsters',decision:'เน้น Artifact ไม่ใช่ generic loot ทั้งหมด'},
+{group:'Expedition Tablet',name:'of the Detonator',effect:'15–30% increased Explosive Placement Range',decision:'ช่วยเชื่อมจุดไกล ลดระเบิดสูญเปล่า'},
+{group:'Expedition Tablet',name:'of the Writings',effect:'Expeditions in Map have +1–2 Remnants',decision:'มอด core สำหรับ Standard Expedition'},
+{group:'Expedition Tablet',name:'of the Demolition',effect:'15–30% increased Explosive Radius',decision:'เก็บ marker/chest ได้ง่ายขึ้น'},
+{group:'Expedition Tablet',name:'of Knowledge',effect:'15–30% increased Quantity of Logbooks dropped by Runic Monsters',decision:'ใช้ใน normal maps เพื่อ sustain Logbook'},
+{group:'Expedition Tablet',name:'of Ancient Fiends',effect:'25–40% increased number of Rare Expedition Monsters',decision:'เพิ่ม rare loot และความตาย'},
+{group:'Expedition Tablet',name:'of Relics',effect:'12–18% increased Effect of Expedition Remnants',decision:'เร่งทั้ง reward และ danger'}
+];
+const GRAND_MOD_IDS=['markers','duplicate','extraRemnants','min5','min6','min7','extra7','extra8','extra9','power','lucky','verisium'];
+const GRAND_MOD_LABELS={markers:'Increased Runic Monster Markers',duplicate:'Runic Monsters Duplicated',extraRemnants:'Additional Remnants',min5:'All Remnants 5+ slots',min6:'All Remnants 6+ slots',min7:'All Remnants 7+ slots',extra7:'+1 Remnant 7+',extra8:'+1 Remnant 8+',extra9:'+1 Remnant 9+',power:'Guaranteed Power Rune',lucky:'Remnants Lucky / keep rarest',verisium:'Increased Verisium'};
+const defaultState={rumors:[],prep:{atlas:{},build:{}},blueprint:[],recipe:[],runs:[],grandMods:{},scores:{prep:0,chain:0}};
+function loadState(){
+  try{const raw=localStorage.getItem(STORAGE);if(raw)return Object.assign(structuredClone(defaultState),JSON.parse(raw));}catch(e){}
+  try{const old=JSON.parse(localStorage.getItem(OLD_STORAGE)||'null');if(old){return {...structuredClone(defaultState),rumors:old.rumors||[],blueprint:(old.chain||[]).map((x,i)=>({id:Date.now()+i,name:x.name||`Remnant ${i+1}`,slots:+x.slots||6,reward:x.reward||'generic',rewardValue:0,pathCost:0,reroll:'keep',note:x.note||'',runes:x.runes||[],propIndex:Math.max(0,(x.runes||[]).indexOf(x.prop))})),runs:old.runs||[],recipe:old.recipe||[],prep:{atlas:{},build:old.build||{}}};}
+  }catch(e){}
+  return structuredClone(defaultState);
+}
+const state=loadState();let draftRunes=[];
+function save(){try{localStorage.setItem(STORAGE,JSON.stringify(state))}catch(e){}updateDashboard()}
+function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function norm(v){return String(v||'').toLowerCase().normalize('NFKD')}
+function toast(t){const e=$('toast');e.textContent=t;e.classList.add('show');setTimeout(()=>e.classList.remove('show'),1800)}
+function clamp(n,a=0,b=100){return Math.max(a,Math.min(b,n))}
+function runeIcon(id,size=''){const r=RUNE[id];if(!r)return'<span class="runeImg sm"><span class="runeFallback">?</span></span>';return `<span class="runeImg ${size}"><span class="runeFallback">${r.name[0]}</span><img loading="lazy" src="${RUNE_CDN}${r.file}.webp" alt="${esc(r.name)}" onerror="this.style.display='none'"></span>`}
+function gotoTab(id){document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x.dataset.tab===id));document.querySelectorAll('.section').forEach(x=>x.classList.toggle('active',x.id===id));window.scrollTo({top:0,behavior:'smooth'})}
+function initNav(){document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>gotoTab(b.dataset.tab));document.querySelectorAll('[data-goto]').forEach(b=>b.onclick=()=>gotoTab(b.dataset.goto))}
+function selectedMapRumors(){return state.rumors.map(n=>RUMORS.find(r=>r.name===n)).filter(r=>r?.kind==='grand')}
+function updateDashboard(){const maps=selectedMapRumors().length,prep=state.scores?.prep||0,chain=state.scores?.chain||0;$('dashRumors').textContent=maps;$('dashPrep').textContent=prep;$('dashChain').textContent=chain;let verdict='ยังไม่พร้อม',reason='กรอกข้อมูลใน Rumor, Prep และ Blueprint';if(maps>=4&&prep>=75&&chain>=72){verdict='พร้อมออกเรือ';reason='Route, Setup และ Chain ผ่านเกณฑ์ heuristic'}else if(maps>=3&&prep>=60&&chain>=55){verdict='ออกได้แบบระวัง';reason='มีอย่างน้อยหนึ่งระบบยังไม่ถึงระดับ Max Juice'}else if(state.rumors.length||prep||state.blueprint.length){verdict='ยังไม่ควรเผา Saga';reason=`Map rumors ${maps} • Prep ${prep} • Chain ${chain}`}$('dashVerdict').textContent=verdict;$('dashReason').textContent=reason;$('dashVerdict').className='num '+(verdict==='พร้อมออกเรือ'?'good':verdict.includes('ระวัง')?'warn':'bad')}
+function renderRumors(){const q=norm($('rumorSearch').value),goal=$('rumorGoal').value;const arr=RUMORS.filter(r=>!q||norm(Object.values(r).join(' ')).includes(q));$('rumorPicker').innerHTML=arr.map(r=>`<button class="chip ${r.kind} ${state.rumors.includes(r.name)?'active':''}" data-rumor="${esc(r.name)}">${r.name} <b>${r.grade}</b></button>`).join('');document.querySelectorAll('[data-rumor]').forEach(b=>b.onclick=()=>{const n=b.dataset.rumor,i=state.rumors.indexOf(n);i>=0?state.rumors.splice(i,1):state.rumors.push(n);save();renderRumors()});$('rumorRows').innerHTML=arr.map(r=>`<tr><td><strong>${r.name}</strong></td><td>${r.area}</td><td><span class="pill ${r.kind==='grand'?'good':r.kind==='boss'?'bad':'purple'}">${r.kind==='grand'?'Grand Expedition':r.kind==='boss'?'Boss':'Unique/Special'}</span></td><td>${r.feature}</td><td>${r.grade}</td><td>${r.advice}</td></tr>`).join('');const chosen=state.rumors.map(n=>RUMORS.find(r=>r.name===n)).filter(Boolean),grand=chosen.filter(r=>r.kind==='grand'),boss=chosen.filter(r=>r.kind==='boss'),unique=chosen.filter(r=>r.kind==='unique'),great=grand.filter(r=>r.grade==='S'),price=+$('sagaPrice').value||0;let score=grand.length*18+great.length*4-boss.length*5-unique.length*3;score=clamp(score);let verdict='ยังไม่ได้สแกน',advice=[];if(chosen.length){if(goal==='saga'){verdict=grand.length>=5?'เส้นทาง Saga แข็งแรง':grand.length>=4?'ผ่านเกณฑ์ 4 Grand':grand.length===3?'ก้ำกึ่ง — อย่ารีบใช้ Saga':'ไม่คุ้มเผา Saga';if(grand.length<4)advice.push('ค้นข่าวลือซ่อนต่อ หรือเก็บ Saga ไว้ route อื่น');if(price>0&&grand.length<4)advice.push(`Saga ราคา ${price} Div ทำให้ความผิดพลาดแพงมาก`)}else if(goal==='boss'){verdict=boss.length?'มี Boss ตามเป้าหมาย':'ไม่มี Boss ที่เลือก'}else if(goal==='special'){verdict=unique.length?'มี Unique/Special':'ไม่มี Unique/Special'}else verdict=grand.length?'มี Grand Expedition '+grand.length+' จุด':'ยังไม่มี Grand Expedition';advice.push(`Grand ${grand.length} • Boss ${boss.length} • Unique ${unique.length}`);if(chosen.some(r=>r.name==='Fallen Stars'))advice.push('Fallen Stars → Moor of the Fallen Skies เป็นเป้าหมายพิเศษ');if(great.length)advice.push(`Great Rumor ${great.length} จุด: ${great.map(x=>x.name).join(', ')}`)}$('rumorTotal').textContent=chosen.length;$('rumorVerdict').textContent=verdict;$('rumorBar').style.width=score+'%';$('rumorAdvice').innerHTML=advice.length?`<div class="${grand.length>=4?'goodbox':grand.length>=3?'warnbox':'badbox'} small">${advice.map(x=>'• '+esc(x)).join('<br>')}</div>`:'';updateDashboard()}
+function initRumors(){$('rumorSearch').oninput=renderRumors;$('rumorGoal').onchange=renderRumors;$('sagaPrice').oninput=renderRumors;$('clearRumors').onclick=()=>{state.rumors=[];save();renderRumors()};$('loadRumorSample').onclick=()=>{state.rumors=['Fallen Stars','Cold as Ice','Endless Cliffs','Sulphite!'];save();renderRumors()};renderRumors()}
+function renderChecks(){state.prep=state.prep||{atlas:{},build:{}};state.prep.atlas=state.prep.atlas||{};state.prep.build=state.prep.build||{};$('atlasChecks').innerHTML=ATLAS_CHOICES.map(x=>`<label class="check"><input type="checkbox" data-atlas="${x.id}" ${state.prep.atlas[x.id]?'checked':''}><span><strong>${x.name}</strong>${x.desc}</span></label>`).join('');document.querySelectorAll('[data-atlas]').forEach(x=>x.onchange=()=>{state.prep.atlas[x.dataset.atlas]=x.checked;save()});$('buildChecks').innerHTML=BUILD_CHECKS.map(x=>`<label class="check"><input type="checkbox" data-build="${x.id}" ${state.prep.build[x.id]?'checked':''}><span><strong>${x.name}</strong>${x.desc}</span></label>`).join('');document.querySelectorAll('[data-build]').forEach(x=>x.onchange=()=>{state.prep.build[x.dataset.build]=x.checked;save()})}
+function readPrep(){return{tier:+$('pTier').value||0,mods:+$('pMods').value||0,rarity:+$('pRarity').value||0,effect:+$('pEffect').value||0,quantity:+$('pQuantity').value||0,tablets:+$('pTablets').value||0,tabletMods:+$('pTabletMods').value||0,tabletRarity:+$('pTabletRarity').value||0,biome:$('pBiome').value,master:$('pMaster').value,budget:$('pBudget').value}}
+function evaluatePrep(){const p=readPrep();let score=0,a=[],danger=[];if(p.tier>=15)score+=20;else if(p.tier>=11){score+=10;a.push('T15+ ให้เพดานจำนวน Remnant สูงสุด')}else danger.push('Tier ต่ำเกินสำหรับ high investment');if(p.mods>=8)score+=16;else if(p.mods>=6)score+=10;else a.push('Waystone 6+ mod จึงเปิด Tablet ได้ 3 ช่องตามระบบปัจจุบัน');if(p.rarity>=40)score+=12;else if(p.rarity>=20)score+=7;else a.push('Item Rarity ต่ำกว่าชุดที่ guide นิยม');if(p.effect>=25)score+=10;else if(p.effect>0)score+=5;else a.push('ไม่มี Modifier Effectiveness');const allowed=p.mods>=6?3:p.mods>=3?2:1;if(p.tablets>allowed)danger.push(`Waystone ${p.mods} mod รองรับ Tablet ตามโครงระบบประมาณ ${allowed} ช่อง ไม่ใช่ ${p.tablets}`);score+=Math.min(p.tablets,allowed)*4;if(p.tabletMods>=2)score+=7;if(p.tabletRarity>0)score+=4;if(p.biome==='desert')score+=8;else a.push('Cultivate the Sea: Desert เป็นตัวเลือก quantity ที่ guide นิยม');if(p.master==='jado')score+=8;if(p.master==='doryani'){score-=25;danger.push('Doryani Refined Formula ทำให้ Grand Expedition เหลือ 5 Explosives ตาม 0.5.4')}if(state.prep.atlas?.questContinues)score+=5;if(state.prep.atlas?.calculatedQuantity)score+=6;if(state.prep.atlas?.doubleExtra)score+=5;if(state.prep.atlas?.steadyRemnant)score+=4;if(state.prep.atlas?.gainingTraction)score+=6;const ready=Object.values(state.prep.build||{}).filter(Boolean).length;score+=ready*2;if(ready<5)danger.push(`Build readiness ผ่านเพียง ${ready}/${BUILD_CHECKS.length} หัวข้อ`);if(p.budget==='max'&&selectedMapRumors().length<4)danger.push('เลือก Max Juice แต่ Rumor Map ยังไม่ถึง 4 จุด');score=clamp(Math.round(score));state.prep.values=p;state.scores=state.scores||{};state.scores.prep=score;save();$('prepScore').textContent=score;$('prepBar').style.width=score+'%';$('prepVerdict').textContent=score>=85?'พร้อม Max Juice':score>=70?'พร้อม Mid Juice':score>=55?'เล่นได้แบบประหยัด':'ยังไม่พร้อมลงทุน';let cls=score>=85?'goodbox':score>=60?'warnbox':'badbox';$('prepAdvice').innerHTML=`<div class="${cls} small"><strong>Tablet slots ที่คาดจาก Waystone: ${allowed}</strong><br>${danger.map(x=>'⚠ '+esc(x)).join('<br>')||'ไม่มีคำเตือนร้ายแรง'}${a.length?'<br><br>'+a.map(x=>'• '+esc(x)).join('<br>'):''}</div>`}
+function initPrep(){renderChecks();const v=state.prep?.values||{};const map={pTier:'tier',pMods:'mods',pRarity:'rarity',pEffect:'effect',pQuantity:'quantity',pTablets:'tablets',pTabletMods:'tabletMods',pTabletRarity:'tabletRarity',pBiome:'biome',pMaster:'master',pBudget:'budget'};Object.entries(map).forEach(([id,k])=>{if(v[k]!==undefined)$(id).value=v[k]});$('evalPrep').onclick=evaluatePrep;$('savePrep').onclick=()=>{state.prep.values=readPrep();save();toast('บันทึกการเตรียมแล้ว')};if(state.scores?.prep)evaluatePrep()}
+function renderDraft(){const slots=+$('bSlots').value||2;if(draftRunes.length>slots)draftRunes=draftRunes.slice(0,slots);$('draftSlots').innerHTML=draftRunes.length?draftRunes.map((id,i)=>`<span class="draftSlot ${String(i)===$('bPropagate').value?'propagate':''}">${runeIcon(id,'sm')}<button data-draftdel="${i}">×</button></span>`).join(''):`<span class="muted small">เลือก Rune จากด้านล่างได้สูงสุด ${slots} ช่อง</span>`;document.querySelectorAll('[data-draftdel]').forEach(b=>b.onclick=()=>{draftRunes.splice(+b.dataset.draftdel,1);renderDraft();renderPropOptions()});renderPropOptions()}
+function renderPropOptions(){const old=$('bPropagate').value;$('bPropagate').innerHTML='<option value="">— เลือก Slot ที่กรอบทอง —</option>'+draftRunes.map((id,i)=>`<option value="${i}">Slot ${i+1}: ${RUNE[id].name}</option>`).join('');if(old!==''&&draftRunes[+old])$('bPropagate').value=old}
+function filteredRunes(filter){return RUNES.filter(r=>filter==='all'||filter==='value'&&PRIORITY[r.priority]>=3||filter==='purple'&&r.kind==='purple'||filter==='danger'&&r.risk>=8||filter==='blue'&&r.kind==='blue')}
+function renderBlueprintPicker(){const f=$('bpRuneFilter').value;$('blueprintRunePicker').innerHTML=filteredRunes(f).map(r=>`<button class="runePick kind-${r.kind}" data-bprune="${r.id}">${runeIcon(r.id,'sm')}<span>${r.name.replace(' Rune','')}</span><b class="priority${r.priority}">${r.priority}</b></button>`).join('');document.querySelectorAll('[data-bprune]').forEach(b=>b.onclick=()=>{const max=+$('bSlots').value||2;if(draftRunes.length>=max){toast(`เต็ม ${max} ช่องแล้ว`);return}draftRunes.push(b.dataset.bprune);renderDraft()})}
+function propagationId(rem){return rem.runes?.[rem.propIndex]||null}
+function uniqueIds(ids){return [...new Set(ids.filter(Boolean))]}
+function comboMessages(ids){const s=new Set(ids),out=[];if(s.has('oath')&&s.has('rebirth'))out.push({level:'bad',title:'Oath + Rebirth',text:'ไฟต์อาจยืดและรกมาก; ชุมชนจำนวนมากเลี่ยงส่งคู่กัน'});if(s.has('death')&&s.has('soul'))out.push({level:'bad',title:'Death + Union of Souls',text:'มอนรวมร่างพร้อมสะสมพลัง ตัวท้ายอาจหนาและแรงผิดปกติ'});if(s.has('power')&&s.has('bond'))out.push({level:'bad',title:'Power + Bond',text:'Rare จำนวนมากและ mod ถูก Empowered — Loot สูงมากแต่เป็นจุดตายหลัก'});if(s.has('power')&&s.has('time'))out.push({level:'bad',title:'Power + Time',text:'มอนเกิดใหม่ rarity สูงและ Empowered ต้องมี DPS/พื้นที่เหลือ'});if(s.has('opulent')&&s.has('power'))out.push({level:'good',title:'Opulent + Power',text:'แกนตัวคูณ loot ที่ดีมากเมื่อเกิดต้นสายและบิลด์รับไหว'});if(s.has('vision'))out.push({level:'warn',title:'Vision Rune',text:'ปิด Curse/ailment setup ถ้าไม่มี reflect protection'});if(s.has('bloodletting'))out.push({level:'warn',title:'Corrupted Blood',text:'ห้ามส่งต่อหากยังไม่มี immunity/cleanse'});if(s.has('protective'))out.push({level:'warn',title:'Proximity Shield',text:'บิลด์ไกลต้องเข้าไปในโล่และอาจถูกมอนปลายสายรุม'});return out}
+function simulateBlueprint(){let carry=[];let totalValue=0,totalRisk=0;const results=state.blueprint.map((rem,i)=>{const own=uniqueIds(rem.runes||[]),all=uniqueIds([...carry,...own]),power=all.includes('power'),baseValue=all.reduce((n,id)=>n+(RUNE[id]?.value||0),0)+(rem.slots||0)*2+(rem.rewardValue||0)*3,baseRisk=all.reduce((n,id)=>n+(RUNE[id]?.risk||0),0)+(rem.slots||0)*1.5;const value=Math.round(baseValue*(power?1.25:1)),risk=Math.round(baseRisk*(power?1.2:1));const prop=propagationId(rem);totalValue+=value;totalRisk+=risk;if(prop)carry.push(prop);return{...rem,index:i,all,carryBefore:[...carry].slice(0,prop?-1:undefined),prop,value,risk,power,traction:state.prep.atlas?.gainingTraction?i*50:0,quantity:state.prep.atlas?.calculatedQuantity?all.length:0}});let score=0;if(results.length){const first3=results.slice(0,3).map(x=>x.prop),last=results.at(-1);if(first3.includes('opulent'))score+=26;if(first3.includes('power'))score+=22;score+=first3.filter(id=>RUNE[id]?.kind==='purple').length*8;score+=Math.min(20,(last?.slots||0)*2);score+=Math.min(15,results.length*2);if((last?.slots||0)<6)score-=15;if(!results.some(x=>x.prop))score-=25;const avgRisk=totalRisk/results.length;if(avgRisk>90)score-=12;score=clamp(Math.round(score))}state.scores=state.scores||{};state.scores.chain=score;save();return{results,score,totalValue,totalRisk}}
+function socketHTML(id,i,total,carry){const angle=-90+(360/total)*i,x=Math.cos(angle*Math.PI/180)*78,y=Math.sin(angle*Math.PI/180)*78;return `<span class="socket ${carry?'carry':''}" style="left:calc(50% + ${x.toFixed(1)}px);top:calc(50% + ${y.toFixed(1)}px)" title="${id?esc(RUNE[id].name):'Empty'}">${id?`<img src="${RUNE_CDN}${RUNE[id].file}.webp" alt="${esc(RUNE[id].name)}" onerror="this.style.display='none'">`:'+'}</span>`}
+function directive(res,pos,total){if(pos===0&&res.prop==='opulent')return'ยอดเยี่ยม: ส่ง Opulent ตั้งแต่ต้น';if(pos<3&&res.prop==='power')return'ตัวคูณ Power เข้าสายเร็ว — ตรวจ Danger';if(pos<Math.ceil(total/2)&&RUNE[res.prop]?.kind==='purple')return'Purple source ต้นสาย เหมาะสร้าง payload';if(pos>=total-2&&res.slots>=7)return'Payload ปลายสาย: รับ modifier สะสมเต็ม';if(pos<2&&res.slots>=8)return'ก้อนช่องสูงอยู่เร็วเกินไป — พิจารณาย้ายท้าย';if(!res.prop)return'ก้อนนี้ไม่เพิ่ม carryover; ใช้เป็น payload/ทางผ่าน';return'ทางผ่าน: ชั่งระยะอ้อมกับ modifier ที่ส่งต่อ'}
+function renderBlueprint(){const sim=simulateBlueprint();$('chainScore').textContent=sim.score;$('chainBar').style.width=sim.score+'%';$('chainVerdict').textContent=!sim.results.length?'ยังไม่มี Remnant':sim.score>=85?'เส้นทางระดับกัปตัน':sim.score>=68?'เส้นทางดี แต่ตรวจ Danger':sim.score>=48?'พอใช้ — ยังเสียตัวคูณ':'ควรรื้อเส้นทาง';let topAdvice=[];if(sim.results.length){const first=sim.results.slice(0,3).map(x=>x.prop);if(!first.includes('opulent'))topAdvice.push('ยังไม่มี Opulent ส่งต่อใน 3 ก้อนแรก');if(!first.includes('power'))topAdvice.push('ยังไม่มี Power ต้นสาย');if((sim.results.at(-1)?.slots||0)<7)topAdvice.push('ปลายสายยังไม่ใช่ Remnant 7+ ช่อง');const all=uniqueIds(sim.results.flatMap(x=>x.all));topAdvice.push(...comboMessages(all).filter(x=>x.level==='bad').map(x=>x.title))}$('chainAdvice').innerHTML=sim.results.length?`<div class="${sim.score>=75?'goodbox':sim.score>=50?'warnbox':'badbox'} small">${topAdvice.map(x=>'• '+esc(x)).join('<br>')||'โครงหลักดี: ตัวคูณต้นสายและ payload ปลายสายครบ'}</div>`:'';$('blueprintRoute').innerHTML=sim.results.length?sim.results.map((r,i)=>{const slots=Math.max(2,r.slots||2),own=r.runes||[],propIndex=r.propIndex;return `<article class="bpNode"><div class="bpHead"><span class="bpOrder">${i+1}</span><div class="bpTitle">${esc(r.name)}<br><span class="tiny muted">${esc(r.reward)} · ${r.rewardValue||0} Div · ${slots} slots</span></div><div class="bpTools"><button class="iconBtn" data-up="${i}">↑</button><button class="iconBtn" data-down="${i}">↓</button><button class="iconBtn" data-del="${i}">×</button></div></div><div class="sigil"><div class="sigilCore"></div><div class="sigilText">${slots}<br><span class="tiny">RUNES</span></div>${Array.from({length:slots},(_,j)=>socketHTML(own[j],j,slots,j===propIndex)).join('')}</div><div class="carryBanner">${r.prop?runeIcon(r.prop,'xs'):'⚪'}<span><strong>${r.prop?RUNE[r.prop].name:'ไม่มี Rune ส่งต่อ'}</strong><br>${r.prop?'ส่งไปทุกก้อนถัดไป':'ใช้เป็น payload เท่านั้น'}</span></div><div class="bpStats"><div class="bpStat"><span class="tiny muted">Loot</span><b class="good">${r.value}</b></div><div class="bpStat"><span class="tiny muted">Danger</span><b class="${r.risk>80?'bad':'warn'}">${r.risk}</b></div><div class="bpStat"><span class="tiny muted">Inherited</span><b>${Math.max(0,r.all.length-own.length)}</b></div></div><div class="bpInherited">${uniqueIds(r.all).map(id=>runeIcon(id,'xs')).join('')}</div><div class="bpAdvice">${directive(r,i,sim.results.length)}${r.traction?`<br><span class="gold">Gaining Traction: +${r.traction}% Monster Rarity</span>`:''}${r.quantity?`<br><span class="good">Calculated Investment: +${r.quantity}% Item Quantity</span>`:''}${r.note?`<br><span class="muted">${esc(r.note)}</span>`:''}</div></article>`}).join(''):'<div class="empty" style="min-width:520px">ยังไม่มี Remnant — วิ่งสำรวจแผนที่แล้วเพิ่มก้อนตามที่เห็นจริง</div>';document.querySelectorAll('[data-del]').forEach(b=>b.onclick=()=>{state.blueprint.splice(+b.dataset.del,1);save();renderBlueprint()});document.querySelectorAll('[data-up]').forEach(b=>b.onclick=()=>moveRemnant(+b.dataset.up,-1));document.querySelectorAll('[data-down]').forEach(b=>b.onclick=()=>moveRemnant(+b.dataset.down,1));const all=uniqueIds(sim.results.flatMap(x=>x.all)),msgs=comboMessages(all);$('comboWarnings').innerHTML=msgs.length?msgs.map(m=>`<div class="combo"><strong class="${m.level}">${m.title}</strong><span class="small muted">${m.text}</span></div>`).join(''):'<div class="card muted">ยังไม่มี Rune combo ที่ต้องเตือน</div>';updateDashboard()}
+function moveRemnant(i,d){const j=i+d;if(j<0||j>=state.blueprint.length)return;[state.blueprint[i],state.blueprint[j]]=[state.blueprint[j],state.blueprint[i]];save();renderBlueprint()}
+function resetDraft(){draftRunes=[];$('bPropagate').value='';renderDraft()}
+function addRemnant(){const slots=+$('bSlots').value||2;if(draftRunes.length!==slots){toast(`กรุณาใส่ Rune ให้ครบ ${slots} ช่องตาม Remnant ที่เห็น`);return}const prop=$('bPropagate').value;if(prop===''){toast('เลือก Rune กรอบทองที่จะส่งต่อ');return}state.blueprint.push({id:Date.now(),name:$('bName').value.trim()||`Remnant ${state.blueprint.length+1}`,slots,reward:$('bReward').value,rewardValue:+$('bRewardValue').value||0,pathCost:+$('bPathCost').value||0,reroll:$('bReroll').value,note:$('bNote').value.trim(),runes:[...draftRunes],propIndex:+prop});save();$('bName').value='';$('bRewardValue').value=0;$('bNote').value='';resetDraft();renderBlueprint();toast('เพิ่ม Remnant แล้ว')}
+function autoRoute(){state.blueprint.sort((a,b)=>{const ap=RUNE[propagationId(a)]?.value||0,bp=RUNE[propagationId(b)]?.value||0;const ak=(a.slots||0)*8+(a.rewardValue||0)*4-ap*7+(a.pathCost||0)*4;const bk=(b.slots||0)*8+(b.rewardValue||0)*4-bp*7+(b.pathCost||0)*4;return ak-bk});save();renderBlueprint();toast('เรียงตัวคูณต้นสาย → payload ช่องสูงท้ายสายแล้ว')}
+function routeText(){const sim=simulateBlueprint();return sim.results.map((r,i)=>`${i+1}. ${r.name} | ${r.slots} slots | carry: ${r.prop?RUNE[r.prop].name:'none'} | inherited ${Math.max(0,r.all.length-(r.runes||[]).length)} | loot ${r.value} / danger ${r.risk}`).join('\n')}
+function initBlueprint(){$('bSlots').oninput=()=>{renderDraft()};$('bPropagate').onchange=renderDraft;$('bpRuneFilter').onchange=renderBlueprintPicker;$('addRemnant').onclick=addRemnant;$('resetDraft').onclick=resetDraft;$('autoRoute').onclick=autoRoute;$('clearBlueprint').onclick=()=>{if(confirm('ล้าง Blueprint ทั้งหมด?')){state.blueprint=[];save();renderBlueprint()}};$('copyRoute').onclick=async()=>{try{await navigator.clipboard.writeText(routeText());toast('คัดลอกเส้นทางแล้ว')}catch{toast('คัดลอกไม่ได้ใน browser นี้')}};$('sampleBlueprint').onclick=()=>{state.blueprint=[
+{id:1,name:'ตัวคูณต้นสาย',slots:5,reward:'generic',rewardValue:0,pathCost:0,reroll:'keep',note:'Opulent กรอบทอง',runes:['opulent','fire','momentum','stone','wisdom'],propIndex:0},
+{id:2,name:'Power Source',slots:6,reward:'currency',rewardValue:1,pathCost:0,reroll:'keep',note:'Power กรอบทอง',runes:['power','bond','protective','rage','rebirth','cold'],propIndex:0},
+{id:3,name:'Purple Bridge',slots:7,reward:'recipe',rewardValue:2,pathCost:1,reroll:'keep',note:'Bond กรอบทอง',runes:['bond','time','life','ward','vision','celestial','toxic'],propIndex:0},
+{id:4,name:'Final Payload',slots:9,reward:'divine',rewardValue:8,pathCost:0,reroll:'keep',note:'ก้อนใหญ่ท้ายสาย',runes:['death','soul','life','vision','celestial','toxic','prismatic','tidal','earth'],propIndex:8}
+];save();renderBlueprint()};renderDraft();renderBlueprintPicker();renderBlueprint()}
+function renderRunes(){const q=norm($('runeSearch').value),f=$('runeFilter').value,s=$('runeSort').value;let arr=RUNES.filter(r=>!q||norm([r.name,r.effect,r.th,r.counter,...r.tags].join(' ')).includes(q));arr=arr.filter(r=>f==='all'||f==='gold'&&r.kind==='gold'||f==='purple'&&r.kind==='purple'||f==='blue'&&r.kind==='blue'||f==='value'&&PRIORITY[r.priority]>=3||f==='danger'&&r.risk>=8);arr.sort((a,b)=>s==='risk'?b.risk-a.risk:s==='name'?a.name.localeCompare(b.name):(PRIORITY[b.priority]-PRIORITY[a.priority]||b.value-a.value));$('runeGrid').innerHTML=arr.map(r=>`<article class="runeCard">${runeIcon(r.id)}<div><div class="runeName">${r.name} <span class="pill ${r.kind==='purple'?'purple':r.kind==='gold'?'gold':'blue'}">${r.kind==='purple'?'Purple':r.kind==='gold'?'Gold':'Blue'}</span></div><div class="runeEffect"><strong>${r.effect}</strong><br>${r.th}</div><div class="bars"><span class="mini priority${r.priority}">Propagate ${r.priority}</span><span class="mini good">Value ${r.value}/10</span><span class="mini bad">Danger ${r.risk}/10</span></div><div class="small muted" style="margin-top:7px"><strong>รับมือ:</strong> ${r.counter}</div></div></article>`).join('')}
+function initRunes(){['runeSearch','runeFilter','runeSort'].forEach(id=>$(id).oninput=renderRunes);renderRunes()}
+function countMissing(recipe,picks){const need={},have={};recipe.r.forEach(id=>need[id]=(need[id]||0)+1);picks.forEach(id=>have[id]=(have[id]||0)+1);const miss=[];Object.entries(need).forEach(([id,n])=>{for(let i=0;i<n-(have[id]||0);i++)miss.push(id)});return miss}
+function renderRecipes(){const picks=state.recipe||[];$('recipePicker').innerHTML=RUNES.map(r=>`<button class="chip ${picks.includes(r.id)?'active':''}" data-recipe-rune="${r.id}">${r.name}</button>`).join('');document.querySelectorAll('[data-recipe-rune]').forEach(b=>b.onclick=()=>{const id=b.dataset.recipeRune,i=picks.indexOf(id);i>=0?picks.splice(i,1):picks.push(id);state.recipe=picks;save();renderRecipes()});const ranked=RECIPES.map(x=>({...x,miss:countMissing(x,picks)})).sort((a,b)=>a.miss.length-b.miss.length);const exact=ranked.filter(x=>!x.miss.length).length;$('recipeCount').textContent=exact;$('recipeInfo').textContent=picks.length?`เลือก ${picks.length} Rune • สูตรใกล้สุดขาด ${ranked[0]?.miss.length||0}`:'ยังไม่ได้เลือก Rune';$('recipeGrid').innerHTML=ranked.map(x=>`<article class="card"><h3>${x.name} <span class="pill ${x.miss.length?'warn':'good'}">${x.miss.length?'ขาด '+x.miss.length:'ทำได้'}</span></h3><p class="tiny muted">${x.lvl}</p><div class="chips">${x.r.map(id=>`<span class="pill">${runeIcon(id,'xs')}${RUNE[id].name.replace(' Rune','')}</span>`).join('')}</div>${x.miss.length?`<div class="warnbox small"><strong>ยังขาด:</strong> ${x.miss.map(id=>RUNE[id].name).join(' · ')}</div>`:'<div class="goodbox small">Rune ที่เลือกครอบคลุมสูตรนี้</div>'}</article>`).join('')}
+function initRecipes(){$('clearRecipe').onclick=()=>{state.recipe=[];save();renderRecipes()};$('mirrorRecipe').onclick=()=>{state.recipe=[...RECIPES[0].r];save();renderRecipes()};renderRecipes()}
+function renderMods(){$('modGrid').innerHTML=MODS.map(m=>`<article class="card"><span class="confidence ${m.group.startsWith('Official')?'official':m.group.includes('Tablet')?'database':'creator'}">${m.group}</span><h3>${m.name}</h3><p class="small"><strong>${m.effect}</strong></p><p class="small muted">${m.decision}</p></article>`).join('');state.grandMods=state.grandMods||{};$('grandModChecks').innerHTML=GRAND_MOD_IDS.map(id=>`<label class="check"><input type="checkbox" data-gmod="${id}" ${state.grandMods[id]?'checked':''}><span><strong>${GRAND_MOD_LABELS[id]}</strong>เลือกเมื่อมอดนี้ขึ้นบนพื้นที่</span></label>`).join('');document.querySelectorAll('[data-gmod]').forEach(x=>x.onchange=()=>{state.grandMods[x.dataset.gmod]=x.checked;save()})}
+function evalGrandMods(){const g=state.grandMods||{};let value=0,risk=0,notes=[];if(g.markers){value+=8;risk+=4}if(g.duplicate){value+=13;risk+=13;notes.push('Duplicated Runic Monsters เพิ่ม density รุนแรง')}if(g.extraRemnants){value+=12;risk+=5}if(g.min5){value+=7;risk+=6}if(g.min6){value+=15;risk+=10}if(g.min7){value+=25;risk+=18;notes.push('7+ floor = jackpot และ danger สูงสุด')}if(g.extra7){value+=10;risk+=6}if(g.extra8){value+=16;risk+=9}if(g.extra9){value+=22;risk+=13}if(g.power){value+=16;risk+=14}if(g.lucky)value+=8;if(g.verisium)value+=5;if(g.min5&&g.min6||g.min6&&g.min7||g.min5&&g.min7)notes.push('Minimum slot mods หลายค่า: ใช้ค่าที่สูงกว่าจริง ไม่บวกกัน');const v=clamp(value),r=clamp(risk);$('grandModResult').innerHTML=`<div class="grid g2" style="margin-top:12px"><div class="goodbox"><strong>Value Pressure ${v}/100</strong><br><span class="small">มอดนี้เพิ่ม payload และโอกาสของดี</span></div><div class="${r>=70?'badbox':'warnbox'}"><strong>Danger Pressure ${r}/100</strong><br><span class="small">${notes.join(' • ')||'ตรวจร่วมกับ Rune chain และ build readiness'}</span></div></div>`}
+function initMods(){renderMods();$('evalGrandMods').onclick=evalGrandMods}
+function renderJournal(){const runs=state.runs||[];let net=0,min=0,wins=0;runs.forEach(r=>{const n=(+r.loot||0)-(+r.cost||0);net+=n;min+=+r.minutes||0;if(n>0)wins++});$('jNet').textContent=net.toFixed(2);$('jDph').textContent=min?((net/min)*60).toFixed(2):'0';$('jCount').textContent=runs.length;$('jWin').textContent=runs.length?Math.round(wins/runs.length*100)+'%':'0%';$('journalRows').innerHTML=runs.length?runs.map((r,i)=>{const n=r.loot-r.cost,dph=r.minutes?n/r.minutes*60:0;return `<tr><td>${new Date(r.date).toLocaleString('th-TH')}</td><td><strong>${esc(r.name)}</strong><br><span class="tiny muted">${esc(r.note)}</span></td><td>${esc(r.mode)}</td><td>${r.minutes}m</td><td>${r.grand||0}</td><td>${r.cost.toFixed(2)}</td><td>${r.loot.toFixed(2)}</td><td class="${n>=0?'good':'bad'}">${n.toFixed(2)}</td><td>${dph.toFixed(2)}</td><td>${r.raw||0}</td><td>${r.deaths||0}</td><td><button class="btn sm danger" data-run-del="${i}">×</button></td></tr>`}).join(''):'<tr><td colspan="12"><div class="empty">ยังไม่มีข้อมูลรอบ</div></td></tr>';document.querySelectorAll('[data-run-del]').forEach(b=>b.onclick=()=>{state.runs.splice(+b.dataset.runDel,1);save();renderJournal()})}
+function initJournal(){$('saveRun').onclick=()=>{state.runs.unshift({date:new Date().toISOString(),name:$('jName').value.trim()||`Voyage ${state.runs.length+1}`,mode:$('jMode').value,minutes:+$('jMinutes').value||1,grand:+$('jGrand').value||0,cost:+$('jCost').value||0,loot:+$('jLoot').value||0,raw:+$('jRaw').value||0,deaths:+$('jDeaths').value||0,note:$('jNote').value.trim()});save();['jName','jNote'].forEach(id=>$(id).value='');['jCost','jLoot','jRaw','jDeaths'].forEach(id=>$(id).value=0);renderJournal();toast('บันทึกรอบแล้ว')};$('clearRuns').onclick=()=>{if(confirm('ล้าง Profit Log ทั้งหมด?')){state.runs=[];save();renderJournal()}};$('exportData').onclick=()=>{const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='grand-expedition-captains-log.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500)};$('importData').onchange=async e=>{try{const d=JSON.parse(await e.target.files[0].text());Object.assign(state,d);save();location.reload()}catch{toast('ไฟล์ JSON ไม่ถูกต้อง')}};renderJournal()}
+function initReset(){$('resetAll').onclick=()=>{if(confirm('ล้าง Rumor, Prep, Blueprint, Recipe และ Journal ทั้งหมด?')){try{localStorage.removeItem(STORAGE);localStorage.removeItem(OLD_STORAGE)}catch(e){}location.reload()}}}
+function init(){initNav();initRumors();initPrep();initBlueprint();initRunes();initRecipes();initMods();initJournal();initReset();updateDashboard()}
+init();
+</script>
+</body>
+</html>
