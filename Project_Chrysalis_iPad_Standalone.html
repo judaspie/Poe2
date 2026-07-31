@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#111725" />
+  <title>Project Chrysalis — Sky Vivarium</title>
+  <style>
+:root{--ink:#eef4eb;--muted:#a9b8ae;--glass:rgba(17,23,37,.76);--line:rgba(219,240,228,.18);--accent:#c9ff9f;--accent2:#8bd9ff;--danger:#ff8f91;--shadow:0 18px 60px rgba(0,0,0,.35)}
+*{box-sizing:border-box}html,body,#app{width:100%;height:100%;margin:0;overflow:hidden;background:#101827;color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input{font:inherit}button{color:inherit}#game{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated;touch-action:none}.scanlines{pointer-events:none;position:absolute;inset:0;opacity:.13;background:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0,rgba(255,255,255,.025) 1px,transparent 1px,transparent 3px);mix-blend-mode:soft-light}.glass{background:linear-gradient(180deg,rgba(22,31,47,.82),rgba(12,18,30,.72));border:1px solid var(--line);box-shadow:var(--shadow);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px)}.topbar{position:absolute;left:24px;right:24px;top:20px;height:72px;border-radius:18px;padding:13px 18px;display:flex;justify-content:space-between;align-items:center}.eyebrow{font-size:10px;letter-spacing:.22em;color:var(--accent);font-weight:800}.topbar h1,.lab h2,.hatchery h2{font-family:Georgia,serif;margin:2px 0 0;font-weight:500}.topbar h1{font-size:25px}.status-cluster{display:flex;gap:10px;align-items:center;font-size:12px;color:var(--muted)}.icon-btn{width:36px;height:36px;border-radius:11px;border:1px solid var(--line);background:rgba(255,255,255,.05);cursor:pointer}.pet-card{position:absolute;left:24px;top:112px;width:310px;border-radius:20px;padding:18px}.pet-card-head{display:flex;justify-content:space-between;gap:10px}.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;margin-top:4px}.stage-badge{font-size:10px;letter-spacing:.12em;padding:7px 10px;border-radius:999px;background:rgba(201,255,159,.12);border:1px solid rgba(201,255,159,.3);align-self:flex-start}.pet-card h2{font-family:Georgia,serif;font-size:25px;font-weight:500;margin:14px 0 5px}.pet-card>p{font-size:12px;line-height:1.5;color:var(--muted);min-height:36px;margin:0 0 14px}.needs{display:grid;gap:9px}.needs label{display:grid;grid-template-columns:65px 1fr 25px;gap:8px;align-items:center;font-size:11px;color:var(--muted)}meter{width:100%;height:8px;border:0;background:none}meter::-webkit-meter-bar{background:rgba(255,255,255,.08);border-radius:99px}meter::-webkit-meter-optimum-value{background:linear-gradient(90deg,var(--accent2),var(--accent));border-radius:99px}.action-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px}.action-grid button,.bottom-dock button,.lab button{border:1px solid var(--line);background:rgba(255,255,255,.055);border-radius:11px;padding:10px;cursor:pointer;transition:.18s ease}.action-grid button:hover,.bottom-dock button:hover,.lab button:hover{background:rgba(201,255,159,.12);transform:translateY(-1px)}.action-grid span{color:var(--accent)}.message{font-size:11px;margin-top:12px;padding-top:12px;border-top:1px solid var(--line);color:#d9e6dc}.island-panel{position:absolute;right:24px;top:112px;width:232px;border-radius:18px;padding:16px}.mini-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:12px}.mini-grid div{background:rgba(255,255,255,.045);border-radius:10px;padding:9px 7px;text-align:center}.mini-grid span{display:block;font-size:9px;color:var(--muted)}.mini-grid b{font-size:13px}.weather-row{display:flex;gap:10px;align-items:center;margin-top:12px;color:var(--muted);font-size:11px}.bottom-dock{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);display:flex;gap:6px;padding:7px;border-radius:16px}.bottom-dock button{font-size:11px;padding:10px 15px}.bottom-dock button.active{background:rgba(201,255,159,.15);border-color:rgba(201,255,159,.45)}.lab{position:absolute;right:24px;bottom:92px;width:420px;max-height:calc(100vh - 220px);overflow:auto;border-radius:20px;padding:18px;transition:.25s ease}.lab.hidden{opacity:0;transform:translateY(20px);pointer-events:none}.lab-head{display:flex;justify-content:space-between;align-items:flex-start}.lab h2{font-size:23px}.lab-grid{display:grid;gap:15px;margin-top:18px}.lab label{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:7px}.segmented,.lab-actions{display:flex;gap:6px}.segmented button{flex:1}.segmented button.active{background:var(--accent);color:#132011}.lab-actions button{flex:1;font-size:10px}.lab input[type=range]{width:100%;accent-color:var(--accent)}#genomeDump{font-size:9px;line-height:1.5;padding:12px;border-radius:12px;background:rgba(0,0,0,.24);overflow:auto;color:#b9d0c2}.hatchery{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;background:radial-gradient(circle at 50% 40%,rgba(75,117,134,.55),rgba(8,13,24,.96) 72%);z-index:10;transition:opacity .7s ease}.hatchery.hidden{opacity:0;pointer-events:none}.hatch-copy{text-align:center;width:min(600px,90vw)}.hatch-copy h2{font-size:42px}.hatch-copy p{color:var(--muted);font-size:13px}.egg-choices{display:flex;gap:30px;margin:45px 0 34px}.egg-choice{width:130px;height:170px;border:1px solid var(--line);border-radius:22px;background:rgba(255,255,255,.045);cursor:pointer;display:grid;place-items:center;transition:.25s ease}.egg-choice:hover,.egg-choice.selected{transform:translateY(-12px) scale(1.04);border-color:var(--accent);box-shadow:0 0 60px rgba(201,255,159,.14)}.egg-shape{width:72px;height:94px;border-radius:52% 48% 48% 52%/62% 62% 38% 38%;box-shadow:inset -14px -12px 0 rgba(0,0,0,.12),0 18px 30px rgba(0,0,0,.3);position:relative}.egg-shape:after{content:"";position:absolute;width:18px;height:30px;border-radius:50%;background:rgba(255,255,255,.34);left:17px;top:15px;transform:rotate(28deg)}.primary{border:0;background:var(--accent);color:#142015;border-radius:13px;padding:13px 22px;font-weight:800;cursor:pointer}.primary:disabled{opacity:.35;cursor:not-allowed}.loading{position:absolute;inset:0;z-index:20;display:grid;place-content:center;text-align:center;background:#0c1423;transition:opacity .5s}.loading.hidden{opacity:0;pointer-events:none}.sigil{width:42px;height:42px;border-radius:50%;border:2px solid rgba(255,255,255,.12);border-top-color:var(--accent);animation:spin 1s linear infinite;margin:auto}.loading p{font-size:11px;color:var(--muted);letter-spacing:.1em}@keyframes spin{to{transform:rotate(360deg)}}body.photo-mode .glass,body.photo-mode .hatchery,body.photo-mode .scanlines{opacity:0;pointer-events:none}
+@media(max-width:760px){.topbar{left:10px;right:10px;top:10px}.pet-card{left:10px;top:auto;bottom:82px;width:260px;max-height:45vh;overflow:auto}.island-panel{display:none}.bottom-dock{bottom:10px;width:calc(100% - 20px);justify-content:center}.bottom-dock button{padding:9px 8px;flex:1}.lab{left:10px;right:10px;width:auto;bottom:72px}.egg-choices{gap:10px}.egg-choice{width:94px;height:135px}.egg-shape{transform:scale(.8)}.hatch-copy h2{font-size:30px}}
+
+</style>
+  <script type="importmap">
+    {"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.185.1/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.185.1/examples/jsm/"}}
+  </script>
+</head>
+<body>
+  <div id="app">
+    <canvas id="game" aria-label="Project Chrysalis 3D vivarium"></canvas>
+    <div class="scanlines" aria-hidden="true"></div>
+    <header class="topbar glass">
+      <div>
+        <div class="eyebrow">PROJECT CHRYSALIS</div>
+        <h1>Sky Vivarium</h1>
+      </div>
+      <div class="status-cluster">
+        <span id="clock">DAY 01 · 08:00</span>
+        <button id="soundBtn" class="icon-btn" title="Ambient sound">◉</button>
+        <button id="photoBtn" class="icon-btn" title="Hide interface">▣</button>
+      </div>
+    </header>
+
+    <aside class="pet-card glass">
+      <div class="pet-card-head">
+        <div>
+          <div class="eyebrow">GENOME ID</div>
+          <div id="genomeId" class="mono">CHR-00000000</div>
+        </div>
+        <div id="stageBadge" class="stage-badge">EGG</div>
+      </div>
+      <h2 id="petName">Unnamed Life</h2>
+      <p id="petTrait">A dormant genome is waiting for first light.</p>
+      <div class="needs">
+        <label>Bond <meter id="bondMeter" min="0" max="100" value="42"></meter><span id="bondText">42</span></label>
+        <label>Energy <meter id="energyMeter" min="0" max="100" value="82"></meter><span id="energyText">82</span></label>
+        <label>Nutrition <meter id="foodMeter" min="0" max="100" value="68"></meter><span id="foodText">68</span></label>
+        <label>Comfort <meter id="comfortMeter" min="0" max="100" value="74"></meter><span id="comfortText">74</span></label>
+      </div>
+      <div class="action-grid">
+        <button data-action="feed"><span>✦</span> Feed</button>
+        <button data-action="play"><span>◇</span> Play</button>
+        <button data-action="soothe"><span>◌</span> Soothe</button>
+        <button data-action="observe"><span>◎</span> Observe</button>
+      </div>
+      <div id="message" class="message">The island is stable.</div>
+    </aside>
+
+    <aside class="island-panel glass">
+      <div class="eyebrow">VIVARIUM HEALTH</div>
+      <div class="mini-grid">
+        <div><span>Flora</span><b id="floraValue">84%</b></div>
+        <div><span>Moisture</span><b id="moistureValue">61%</b></div>
+        <div><span>Pollination</span><b id="pollinationValue">47%</b></div>
+      </div>
+      <div class="weather-row"><span id="weatherIcon">☀</span><span id="weatherText">Soft sky · 18°C</span></div>
+    </aside>
+
+    <nav class="bottom-dock glass">
+      <button data-camera="orbit" class="active">Vivarium</button>
+      <button data-camera="follow">Observe</button>
+      <button data-camera="top">Ecology</button>
+      <button id="debugBtn">Evolution Lab</button>
+    </nav>
+
+    <section id="lab" class="lab glass hidden" aria-hidden="true">
+      <div class="lab-head">
+        <div><div class="eyebrow">NON-CANONICAL SANDBOX</div><h2>Evolution Lab</h2></div>
+        <button id="closeLab" class="icon-btn">×</button>
+      </div>
+      <div class="lab-grid">
+        <div>
+          <label>Life stage</label>
+          <div class="segmented" id="stageControls">
+            <button data-stage="egg">Egg</button><button data-stage="larva">Larva</button><button data-stage="pupa">Pupa</button><button data-stage="adult">Adult</button>
+          </div>
+        </div>
+        <div>
+          <label for="timeScale">Simulation speed <span id="timeScaleText">1×</span></label>
+          <input id="timeScale" type="range" min="0" max="20" value="1" step="1" />
+        </div>
+        <div>
+          <label for="wind">Wind</label>
+          <input id="wind" type="range" min="0" max="100" value="35" />
+        </div>
+        <div>
+          <label for="moisture">Moisture</label>
+          <input id="moisture" type="range" min="0" max="100" value="61" />
+        </div>
+        <div>
+          <label>Genome operations</label>
+          <div class="lab-actions"><button id="mutateBtn">Micro-mutate</button><button id="rerollBtn">New genome</button><button id="resetBtn">Reset save</button></div>
+        </div>
+      </div>
+      <pre id="genomeDump"></pre>
+    </section>
+
+    <section id="hatchery" class="hatchery">
+      <div class="hatch-copy">
+        <div class="eyebrow">GENESIS RITUAL</div>
+        <h2>Choose one signal from the sky.</h2>
+        <p>Each egg contains a deterministic genome. Color is a clue, never a power ranking.</p>
+      </div>
+      <div id="eggChoices" class="egg-choices"></div>
+      <button id="acceptEgg" class="primary" disabled>Awaken selected genome</button>
+    </section>
+
+    <div id="loading" class="loading"><div class="sigil"></div><p>Growing a sky...</p></div>
+  </div>
+  <script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+const $ = (s) => document.querySelector(s);
+const $$ = (s) => [...document.querySelectorAll(s)];
+const clamp = THREE.MathUtils.clamp;
+
+class RNG {
+  constructor(seed=1){this.s=seed>>>0||1}
+  next(){this.s=(Math.imul(this.s,1664525)+1013904223)>>>0;return this.s/4294967296}
+  range(a,b){return a+(b-a)*this.next()}
+  pick(a){return a[Math.floor(this.next()*a.length)]}
+}
+const hashString=(str)=>{let h=2166136261;for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0};
+const hex=(n)=>n.toString(16).padStart(8,'0').toUpperCase();
+
+function makeGenome(seed=Math.floor(Math.random()*0xffffffff)){
+  const r=new RNG(seed);
+  const hue=r.range(0,1), secondary=(hue+r.range(.12,.42))%1;
+  return {
+    version:1,seed,id:`CHR-${hex(seed)}`,
+    clade:r.pick(['AEROFOLIA','MIRRORMOTH','SKYAXOLOTL','PETALWING']),
+    palette:{primary:hue,secondary,accent:(secondary+.45)%1,light:r.range(.48,.7)},
+    anatomy:{segments:Math.floor(r.range(3,7)),limbs:r.pick([4,6]),antennae:r.pick([1,2,3]),wingPairs:r.pick([1,2]),tail:r.next()>.38,crest:r.next()>.5},
+    temperament:{curiosity:r.next(),sociability:r.next(),calm:r.next(),boldness:r.next()},
+    motif:r.pick(['speckled','banded','ocelli','veined','starlit']),
+    mutationBudget:r.range(.05,.22)
+  };
+}
+
+const saved=JSON.parse(localStorage.getItem('chrysalis.save')||'null');
+const state={genome:saved?.genome||null,stage:saved?.stage||'egg',name:saved?.name||'Aster',needs:saved?.needs||{bond:42,energy:82,food:68,comfort:74},time:saved?.time||8,day:saved?.day||1,timeScale:1,weather:'soft',wind:.35,moisture:.61,selectedEgg:null,lab:false};
+const persist=()=>localStorage.setItem('chrysalis.save',JSON.stringify({genome:state.genome,stage:state.stage,name:state.name,needs:state.needs,time:state.time,day:state.day}));
+
+const canvas=$('#game');
+const renderer=new THREE.WebGLRenderer({canvas,antialias:false,alpha:false,powerPreference:'high-performance'});
+renderer.setPixelRatio(Math.min(devicePixelRatio,1.25));
+renderer.setSize(innerWidth,innerHeight);
+renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.08;
+const scene=new THREE.Scene();scene.background=new THREE.Color(0x8eb9ca);scene.fog=new THREE.FogExp2(0x91b8c3,.012);
+const camera=new THREE.PerspectiveCamera(44,innerWidth/innerHeight,.1,300);camera.position.set(16,12,20);
+const controls=new OrbitControls(camera,canvas);controls.enableDamping=true;controls.target.set(0,1.5,0);controls.minDistance=7;controls.maxDistance=38;controls.maxPolarAngle=Math.PI*.49;
+
+scene.add(new THREE.HemisphereLight(0xccefff,0x39462d,2.4));
+const sun=new THREE.DirectionalLight(0xfff4d3,4.2);sun.position.set(-10,18,8);sun.castShadow=true;sun.shadow.mapSize.set(1024,1024);sun.shadow.camera.left=-18;sun.shadow.camera.right=18;sun.shadow.camera.top=18;sun.shadow.camera.bottom=-18;scene.add(sun);
+const rim=new THREE.DirectionalLight(0x8fd8ff,1.6);rim.position.set(12,8,-12);scene.add(rim);
+
+function mat(color,rough=.9,emissive=0){return new THREE.MeshStandardMaterial({color,roughness:rough,metalness:0,flatShading:true,emissive,emissiveIntensity:emissive?0.18:0})}
+function mesh(g,m,parent=scene){const o=new THREE.Mesh(g,m);o.castShadow=o.receiveShadow=true;parent.add(o);return o}
+
+const world=new THREE.Group();scene.add(world);
+const island=new THREE.Group();world.add(island);
+const top=mesh(new THREE.CylinderGeometry(8.8,7.8,2.1,12,2),mat(0x668956),island);top.position.y=-.55;
+const rock=mesh(new THREE.ConeGeometry(7.7,9.5,10,4),mat(0x5c5860),island);rock.position.y=-5.85;rock.rotation.y=.18;
+for(let i=0;i<22;i++){const r=new RNG(200+i),a=r.range(0,Math.PI*2),rad=r.range(3.5,8.2);const stone=mesh(new THREE.DodecahedronGeometry(r.range(.25,.7),0),mat(r.pick([0x6e6970,0x77737b,0x5c5c66])),island);stone.position.set(Math.cos(a)*rad,r.range(-.1,.45),Math.sin(a)*rad);stone.scale.y=r.range(.5,1.3);stone.rotation.set(r.next(),r.next(),r.next())}
+const pond=mesh(new THREE.CylinderGeometry(2.35,2.35,.08,20),new THREE.MeshStandardMaterial({color:0x5ea8bd,transparent:true,opacity:.78,roughness:.18,metalness:.08}),island);pond.position.set(2.7,.55,-1.3);
+for(let i=0;i<44;i++){const r=new RNG(500+i),a=r.range(0,Math.PI*2),rad=r.range(2.4,7.7);if(Math.hypot(Math.cos(a)*rad-2.7,Math.sin(a)*rad+1.3)<2.6)continue;const stem=new THREE.Group();stem.position.set(Math.cos(a)*rad,.5,Math.sin(a)*rad);stem.rotation.y=r.range(0,6.28);island.add(stem);const s=mesh(new THREE.CylinderGeometry(.025,.045,r.range(.25,.7),5),mat(0x446d42),stem);s.position.y=.2;const flower=mesh(new THREE.OctahedronGeometry(r.range(.07,.16),0),mat(r.pick([0xf7d48a,0xf1a9c8,0xb8d6ff,0xf3f0dd]),.8),stem);flower.position.y=r.range(.42,.7)}
+for(let i=0;i<7;i++){const r=new RNG(900+i),a=r.range(0,6.28),rad=r.range(4.2,7.2);const trunk=mesh(new THREE.CylinderGeometry(.22,.36,r.range(1.7,2.8),6),mat(0x6c5242),island);trunk.position.set(Math.cos(a)*rad,1.3,Math.sin(a)*rad);trunk.rotation.z=r.range(-.08,.08);for(let j=0;j<3;j++){const crown=mesh(new THREE.IcosahedronGeometry(r.range(.7,1.2),1),mat(r.pick([0x6fa65e,0x79ad66,0x557f54])),island);crown.position.set(trunk.position.x+r.range(-.4,.4),r.range(2.3,3.2),trunk.position.z+r.range(-.4,.4))}}
+
+const clouds=[];for(let i=0;i<24;i++){const r=new RNG(1200+i),g=new THREE.Group();for(let j=0;j<r.range(2,6);j++){const c=mesh(new THREE.IcosahedronGeometry(r.range(.8,2.1),1),new THREE.MeshBasicMaterial({color:0xe9f4f4,transparent:true,opacity:r.range(.28,.65)}),g);c.position.set(r.range(-2,2),r.range(-.5,.5),r.range(-1,1))}g.position.set(r.range(-55,55),r.range(-9,18),r.range(-55,25));scene.add(g);clouds.push({g,s:r.range(.3,1)})}
+const motesGeo=new THREE.BufferGeometry(),motes=[];for(let i=0;i<240;i++)motes.push((Math.random()-.5)*22,Math.random()*9,(Math.random()-.5)*22);motesGeo.setAttribute('position',new THREE.Float32BufferAttribute(motes,3));const motesPts=new THREE.Points(motesGeo,new THREE.PointsMaterial({color:0xe7ffd0,size:.045,transparent:true,opacity:.7}));world.add(motesPts);
+
+let creature=null,animParts={};
+function colorFromGenome(h,l=.58){const c=new THREE.Color();c.setHSL(h,.56,l);return c}
+function disposeObject(o){o.traverse(x=>{x.geometry?.dispose?.();if(Array.isArray(x.material))x.material.forEach(m=>m.dispose());else x.material?.dispose?.()});o.removeFromParent()}
+function addEye(parent,x,y,z,scale=1){const eye=mesh(new THREE.SphereGeometry(.12*scale,8,6),mat(0xf8f3df),parent);eye.position.set(x,y,z);const pupil=mesh(new THREE.SphereGeometry(.055*scale,7,5),mat(0x172227),eye);pupil.position.set(0,0,.1*scale);return eye}
+function buildCreature(){if(creature)disposeObject(creature);creature=new THREE.Group();world.add(creature);creature.position.set(0,.65,0);const g=state.genome||makeGenome(1),p=colorFromGenome(g.palette.primary,g.palette.light),s=colorFromGenome(g.palette.secondary,.54),a=colorFromGenome(g.palette.accent,.65);const pm=mat(p),sm=mat(s),am=mat(a);animParts={};
+  if(state.stage==='egg'){
+    const egg=mesh(new THREE.SphereGeometry(.88,12,9),pm,creature);egg.scale.set(.78,1.16,.78);egg.position.y=.9;for(let i=0;i<6;i++){const spot=mesh(new THREE.SphereGeometry(.13,6,5),i%2?sm:am,egg);const ang=i/6*Math.PI*2;spot.position.set(Math.cos(ang)*.7,(i%3-.8)*.35,Math.sin(ang)*.7);spot.scale.z=.25}animParts.body=egg;
+  } else if(state.stage==='larva'){
+    const chain=new THREE.Group();creature.add(chain);for(let i=0;i<g.anatomy.segments+2;i++){const seg=mesh(new THREE.IcosahedronGeometry(.42-(i*.018),1),i%2?sm:pm,chain);seg.position.set(0,.48,i*.58-(g.anatomy.segments*.28));seg.scale.set(1, .82, 1.2);if(i===0){addEye(seg,-.18,.08,.36,.8);addEye(seg,.18,.08,.36,.8)}if(i>0&&i<g.anatomy.segments+1){for(const side of [-1,1]){const leg=mesh(new THREE.ConeGeometry(.07,.35,5),am,seg);leg.position.set(side*.34,-.28,.05);leg.rotation.z=side*.8}}}animParts.body=chain;
+  } else if(state.stage==='pupa'){
+    const pupa=mesh(new THREE.IcosahedronGeometry(1.05,2),pm,creature);pupa.scale.set(.68,1.5,.62);pupa.position.y=1.55;pupa.rotation.z=.08;const band=mesh(new THREE.TorusGeometry(.6,.07,5,12),am,pupa);band.rotation.x=Math.PI/2;band.position.y=-.15;const thread=mesh(new THREE.CylinderGeometry(.025,.025,2.3,5),mat(0xdce6cf),creature);thread.position.y=3.35;animParts.body=pupa;
+  } else {
+    const body=mesh(new THREE.IcosahedronGeometry(.66,2),pm,creature);body.scale.set(.86,1.1,1.34);body.position.y=1.25;const head=mesh(new THREE.IcosahedronGeometry(.5,2),sm,creature);head.position.set(0,1.45,.78);addEye(head,-.19,.1,.42,.9);addEye(head,.19,.1,.42,.9);
+    for(let i=0;i<g.anatomy.antennae;i++){const side=g.anatomy.antennae===1?0:(i/(g.anatomy.antennae-1)-.5);const ant=mesh(new THREE.CylinderGeometry(.025,.035,.8,5),am,head);ant.position.set(side*.38,.52,.08);ant.rotation.z=-side*.55;ant.rotation.x=-.25}
+    const wings=[];for(const side of [-1,1]){for(let pair=0;pair<g.anatomy.wingPairs;pair++){const shape=new THREE.Shape();shape.moveTo(0,0);shape.bezierCurveTo(.7,.8,1.55,.7,1.5,.02);shape.bezierCurveTo(1.2,-.55,.35,-.48,0,0);const geo=new THREE.ShapeGeometry(shape,5);const wing=mesh(geo,new THREE.MeshStandardMaterial({color:pair? a:p,side:THREE.DoubleSide,transparent:true,opacity:.9,roughness:.8,flatShading:true}),creature);wing.position.set(side*.18,1.56,.1-pair*.3);wing.rotation.y=side*Math.PI/2;wing.rotation.z=side*(pair?.2:.05);wing.scale.x=side;wings.push({wing,side,pair})}}
+    for(let i=0;i<g.anatomy.limbs/2;i++){for(const side of [-1,1]){const leg=mesh(new THREE.CylinderGeometry(.035,.055,.75,5),am,body);leg.position.set(side*.42,(-.12+i*.22),(.35-i*.35));leg.rotation.z=side*.75;leg.rotation.x=(i-1)*.4}}
+    if(g.anatomy.tail){const tail=mesh(new THREE.ConeGeometry(.18,1.3,6),sm,body);tail.position.set(0,-.02,-.94);tail.rotation.x=-Math.PI/2.1}animParts.body=body;animParts.head=head;animParts.wings=wings;
+  }
+  updateUI();
+}
+
+function updateUI(){if(!state.genome)return;$('#genomeId').textContent=state.genome.id;$('#stageBadge').textContent=state.stage.toUpperCase();$('#petName').textContent=state.name;const trait=state.genome.clade.replaceAll('_',' ');$('#petTrait').textContent=`${trait} lineage · ${state.genome.motif} motif · ${state.genome.anatomy.limbs}-limbed morphology.`;for(const k of ['bond','energy','food','comfort']){$(`#${k==='food'?'food':k}Meter`).value=state.needs[k];$(`#${k==='food'?'food':k}Text`).textContent=Math.round(state.needs[k])}$('#moistureValue').textContent=`${Math.round(state.moisture*100)}%`;$('#genomeDump').textContent=JSON.stringify(state.genome,null,2);$$('#stageControls button').forEach(b=>b.classList.toggle('active',b.dataset.stage===state.stage))}
+
+const cameraModes={orbit:{pos:new THREE.Vector3(16,12,20),target:new THREE.Vector3(0,1.5,0)},follow:{pos:new THREE.Vector3(5,4.2,7),target:new THREE.Vector3(0,1.4,0)},top:{pos:new THREE.Vector3(.1,24,.1),target:new THREE.Vector3(0,0,0)}};let cameraMode='orbit';
+$$('[data-camera]').forEach(b=>b.onclick=()=>{cameraMode=b.dataset.camera;$$('[data-camera]').forEach(x=>x.classList.toggle('active',x===b))});
+
+function showMessage(t){$('#message').textContent=t;clearTimeout(showMessage.t);showMessage.t=setTimeout(()=>$('#message').textContent='The island is stable.',3000)}
+$$('[data-action]').forEach(b=>b.onclick=()=>{const a=b.dataset.action;if(a==='feed'){state.needs.food=clamp(state.needs.food+18,0,100);state.needs.energy=clamp(state.needs.energy+5,0,100);showMessage('It accepts the nutrient bloom.')}if(a==='play'){state.needs.bond=clamp(state.needs.bond+10,0,100);state.needs.energy=clamp(state.needs.energy-8,0,100);showMessage('A new play behavior was recorded.')}if(a==='soothe'){state.needs.comfort=clamp(state.needs.comfort+15,0,100);state.needs.bond=clamp(state.needs.bond+4,0,100);showMessage('Its breathing settles into your rhythm.')}if(a==='observe'){showMessage(`${state.genome.motif} markings pulse when the wind changes.`);cameraMode='follow'}updateUI();persist()});
+
+$('#debugBtn').onclick=()=>{$('#lab').classList.toggle('hidden');state.lab=!$('#lab').classList.contains('hidden');$('#lab').setAttribute('aria-hidden',String(!state.lab))};$('#closeLab').onclick=()=>$('#debugBtn').click();
+$$('#stageControls button').forEach(b=>b.onclick=()=>{state.stage=b.dataset.stage;buildCreature();persist()});
+$('#timeScale').oninput=e=>{state.timeScale=Number(e.target.value);$('#timeScaleText').textContent=`${state.timeScale}×`};$('#wind').oninput=e=>state.wind=Number(e.target.value)/100;$('#moisture').oninput=e=>{state.moisture=Number(e.target.value)/100;updateUI()};
+$('#mutateBtn').onclick=()=>{const g=structuredClone(state.genome),r=new RNG((g.seed+Date.now())>>>0);g.palette.secondary=(g.palette.secondary+r.range(-.06,.06)+1)%1;g.temperament.curiosity=clamp(g.temperament.curiosity+r.range(-.08,.08),0,1);g.id=`LAB-${hex(hashString(JSON.stringify(g)))}`;state.genome=g;buildCreature();showMessage('Lab clone micro-mutated. Canonical save isolated.')};
+$('#rerollBtn').onclick=()=>{state.genome=makeGenome();state.stage='egg';buildCreature();showMessage('A non-canonical genome was generated.')};$('#resetBtn').onclick=()=>{localStorage.removeItem('chrysalis.save');location.reload()};
+$('#photoBtn').onclick=()=>document.body.classList.toggle('photo-mode');$('#soundBtn').onclick=()=>showMessage('Ambient audio placeholder: wind, insects, wing rustle.');
+
+function initHatchery(){if(state.genome){$('#hatchery').classList.add('hidden');buildCreature();return}const choices=[makeGenome(),makeGenome(),makeGenome()];const wrap=$('#eggChoices');choices.forEach((g,i)=>{const b=document.createElement('button');b.className='egg-choice';b.innerHTML=`<div class="egg-shape" style="background:linear-gradient(145deg,hsl(${g.palette.primary*360} 64% 68%),hsl(${g.palette.secondary*360} 55% 43%))"></div>`;b.onclick=()=>{state.selectedEgg=i;$$('.egg-choice').forEach(x=>x.classList.toggle('selected',x===b));$('#acceptEgg').disabled=false};wrap.appendChild(b)});$('#acceptEgg').onclick=()=>{state.genome=choices[state.selectedEgg];state.stage='egg';persist();buildCreature();$('#hatchery').classList.add('hidden');showMessage('Genome awakened. The first life-stage has begun.')}}
+
+let last=performance.now(),elapsed=0;
+function tick(now){const dt=Math.min((now-last)/1000,.05);last=now;elapsed+=dt;controls.enabled=cameraMode==='orbit';const cm=cameraModes[cameraMode];if(cameraMode!=='orbit'){camera.position.lerp(cm.pos,.035);controls.target.lerp(cm.target,.04)}else{controls.target.lerp(cm.target,.03)}controls.update();
+  state.time+=dt*.035*state.timeScale;if(state.time>=24){state.time-=24;state.day++}const hrs=Math.floor(state.time),mins=Math.floor((state.time-hrs)*60);$('#clock').textContent=`DAY ${String(state.day).padStart(2,'0')} · ${String(hrs).padStart(2,'0')}:${String(mins).padStart(2,'0')}`;
+  const dayLight=.35+.65*Math.max(0,Math.sin((state.time-6)/24*Math.PI*2));sun.intensity=1.2+dayLight*3.2;scene.background.setHSL(.55,.25,.35+dayLight*.28);scene.fog.color.copy(scene.background);
+  clouds.forEach((c,i)=>{c.g.position.x+=dt*c.s*(.3+state.wind);if(c.g.position.x>58)c.g.position.x=-58;c.g.position.y+=Math.sin(elapsed*.15+i)*dt*.015});motesPts.rotation.y+=dt*.03;
+  if(creature){creature.position.y=.65+Math.sin(elapsed*1.35)*.035;if(animParts.body){animParts.body.rotation.y=Math.sin(elapsed*.5)*.12;animParts.body.scale.y*=1}if(animParts.head)animParts.head.rotation.y=Math.sin(elapsed*.8)*.18;if(animParts.wings)animParts.wings.forEach(({wing,side,pair})=>wing.rotation.z=side*((pair?.2:.05)+Math.sin(elapsed*(3.4+state.genome.temperament.boldness*2)+pair)*.22));}
+  if(state.timeScale>0&&state.genome){const decay=dt*.012*state.timeScale;state.needs.food=clamp(state.needs.food-decay,0,100);state.needs.energy=clamp(state.needs.energy-decay*.65,0,100);state.needs.comfort=clamp(state.needs.comfort-decay*.25,0,100)}
+  renderer.render(scene,camera);requestAnimationFrame(tick)}
+
+addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
+initHatchery();updateUI();setTimeout(()=>$('#loading').classList.add('hidden'),700);requestAnimationFrame(tick);
+
+</script>
+</body>
+</html>
